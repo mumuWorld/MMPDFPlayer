@@ -1,0 +1,448 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A523763B05E0D5596A045959 /* Pods_MMPDF_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0824FD3FF7AC17C4B08D5A75 /* Pods_MMPDF_iOS.framework */; };
+		B41B8BCA26B6A41900AC3BC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41B8BC926B6A41900AC3BC0 /* AppDelegate.swift */; };
+		B41B8BCC26B6A41900AC3BC0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41B8BCB26B6A41900AC3BC0 /* SceneDelegate.swift */; };
+		B41B8BCE26B6A41900AC3BC0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41B8BCD26B6A41900AC3BC0 /* ViewController.swift */; };
+		B41B8BD126B6A41900AC3BC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B41B8BCF26B6A41900AC3BC0 /* Main.storyboard */; };
+		B41B8BD326B6A41A00AC3BC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B41B8BD226B6A41A00AC3BC0 /* Assets.xcassets */; };
+		B41B8BD626B6A41A00AC3BC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B41B8BD426B6A41A00AC3BC0 /* LaunchScreen.storyboard */; };
+		B41B8BE226B6A49E00AC3BC0 /* MMBaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41B8BDE26B6A49D00AC3BC0 /* MMBaseNavigationController.swift */; };
+		B41B8BE326B6A49E00AC3BC0 /* MMCustomNaviBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41B8BDF26B6A49D00AC3BC0 /* MMCustomNaviBar.swift */; };
+		B41B8BE426B6A49E00AC3BC0 /* MMBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41B8BE026B6A49D00AC3BC0 /* MMBaseViewController.swift */; };
+		B41B8BE526B6A49E00AC3BC0 /* MMBaseViews.xib in Resources */ = {isa = PBXBuildFile; fileRef = B41B8BE126B6A49D00AC3BC0 /* MMBaseViews.xib */; };
+		B41B8BE726B6A85100AC3BC0 /* MMDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41B8BE626B6A85100AC3BC0 /* MMDefine.swift */; };
+		B41B8BE926B6A9B100AC3BC0 /* MMHomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41B8BE826B6A9B100AC3BC0 /* MMHomeTabBarController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0824FD3FF7AC17C4B08D5A75 /* Pods_MMPDF_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MMPDF_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2968B5B56E917299C0612D81 /* Pods-MMPDF_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMPDF_iOS.debug.xcconfig"; path = "Target Support Files/Pods-MMPDF_iOS/Pods-MMPDF_iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		B41B8BC626B6A41900AC3BC0 /* MMPDF_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMPDF_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B41B8BC926B6A41900AC3BC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B41B8BCB26B6A41900AC3BC0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		B41B8BCD26B6A41900AC3BC0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B41B8BD026B6A41900AC3BC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B41B8BD226B6A41A00AC3BC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B41B8BD526B6A41A00AC3BC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B41B8BD726B6A41A00AC3BC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B41B8BDE26B6A49D00AC3BC0 /* MMBaseNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMBaseNavigationController.swift; sourceTree = "<group>"; };
+		B41B8BDF26B6A49D00AC3BC0 /* MMCustomNaviBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMCustomNaviBar.swift; sourceTree = "<group>"; };
+		B41B8BE026B6A49D00AC3BC0 /* MMBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMBaseViewController.swift; sourceTree = "<group>"; };
+		B41B8BE126B6A49D00AC3BC0 /* MMBaseViews.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MMBaseViews.xib; sourceTree = "<group>"; };
+		B41B8BE626B6A85100AC3BC0 /* MMDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMDefine.swift; sourceTree = "<group>"; };
+		B41B8BE826B6A9B100AC3BC0 /* MMHomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMHomeTabBarController.swift; sourceTree = "<group>"; };
+		E9532F7AE5F0CA8A2D363035 /* Pods-MMPDF_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMPDF_iOS.release.xcconfig"; path = "Target Support Files/Pods-MMPDF_iOS/Pods-MMPDF_iOS.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B41B8BC326B6A41900AC3BC0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A523763B05E0D5596A045959 /* Pods_MMPDF_iOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0300A9522150E39B7DF6D074 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2968B5B56E917299C0612D81 /* Pods-MMPDF_iOS.debug.xcconfig */,
+				E9532F7AE5F0CA8A2D363035 /* Pods-MMPDF_iOS.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		B41B8BBD26B6A41900AC3BC0 = {
+			isa = PBXGroup;
+			children = (
+				B41B8BC826B6A41900AC3BC0 /* MMPDF_iOS */,
+				B41B8BC726B6A41900AC3BC0 /* Products */,
+				0300A9522150E39B7DF6D074 /* Pods */,
+				ECACCF44F9EB29413118A0CC /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		B41B8BC726B6A41900AC3BC0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B41B8BC626B6A41900AC3BC0 /* MMPDF_iOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B41B8BC826B6A41900AC3BC0 /* MMPDF_iOS */ = {
+			isa = PBXGroup;
+			children = (
+				B41B8BDD26B6A49D00AC3BC0 /* Base */,
+				B41B8BC926B6A41900AC3BC0 /* AppDelegate.swift */,
+				B41B8BCB26B6A41900AC3BC0 /* SceneDelegate.swift */,
+				B41B8BCD26B6A41900AC3BC0 /* ViewController.swift */,
+				B41B8BCF26B6A41900AC3BC0 /* Main.storyboard */,
+				B41B8BD226B6A41A00AC3BC0 /* Assets.xcassets */,
+				B41B8BD426B6A41A00AC3BC0 /* LaunchScreen.storyboard */,
+				B41B8BD726B6A41A00AC3BC0 /* Info.plist */,
+				B41B8BE826B6A9B100AC3BC0 /* MMHomeTabBarController.swift */,
+			);
+			path = MMPDF_iOS;
+			sourceTree = "<group>";
+		};
+		B41B8BDD26B6A49D00AC3BC0 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				B41B8BDE26B6A49D00AC3BC0 /* MMBaseNavigationController.swift */,
+				B41B8BDF26B6A49D00AC3BC0 /* MMCustomNaviBar.swift */,
+				B41B8BE026B6A49D00AC3BC0 /* MMBaseViewController.swift */,
+				B41B8BE126B6A49D00AC3BC0 /* MMBaseViews.xib */,
+				B41B8BE626B6A85100AC3BC0 /* MMDefine.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		ECACCF44F9EB29413118A0CC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0824FD3FF7AC17C4B08D5A75 /* Pods_MMPDF_iOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B41B8BC526B6A41900AC3BC0 /* MMPDF_iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B41B8BDA26B6A41A00AC3BC0 /* Build configuration list for PBXNativeTarget "MMPDF_iOS" */;
+			buildPhases = (
+				7002D87D51545C1439C9B91D /* [CP] Check Pods Manifest.lock */,
+				B41B8BC226B6A41900AC3BC0 /* Sources */,
+				B41B8BC326B6A41900AC3BC0 /* Frameworks */,
+				B41B8BC426B6A41900AC3BC0 /* Resources */,
+				502FB4965E788E20FE51DC17 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MMPDF_iOS;
+			productName = MMPDF_iOS;
+			productReference = B41B8BC626B6A41900AC3BC0 /* MMPDF_iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B41B8BBE26B6A41900AC3BC0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					B41B8BC526B6A41900AC3BC0 = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+				};
+			};
+			buildConfigurationList = B41B8BC126B6A41900AC3BC0 /* Build configuration list for PBXProject "MMPDF_iOS" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B41B8BBD26B6A41900AC3BC0;
+			productRefGroup = B41B8BC726B6A41900AC3BC0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B41B8BC526B6A41900AC3BC0 /* MMPDF_iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B41B8BC426B6A41900AC3BC0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B41B8BD626B6A41A00AC3BC0 /* LaunchScreen.storyboard in Resources */,
+				B41B8BD326B6A41A00AC3BC0 /* Assets.xcassets in Resources */,
+				B41B8BD126B6A41900AC3BC0 /* Main.storyboard in Resources */,
+				B41B8BE526B6A49E00AC3BC0 /* MMBaseViews.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		502FB4965E788E20FE51DC17 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MMPDF_iOS/Pods-MMPDF_iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MMPDF_iOS/Pods-MMPDF_iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MMPDF_iOS/Pods-MMPDF_iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7002D87D51545C1439C9B91D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MMPDF_iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B41B8BC226B6A41900AC3BC0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B41B8BE226B6A49E00AC3BC0 /* MMBaseNavigationController.swift in Sources */,
+				B41B8BE726B6A85100AC3BC0 /* MMDefine.swift in Sources */,
+				B41B8BE426B6A49E00AC3BC0 /* MMBaseViewController.swift in Sources */,
+				B41B8BE326B6A49E00AC3BC0 /* MMCustomNaviBar.swift in Sources */,
+				B41B8BCE26B6A41900AC3BC0 /* ViewController.swift in Sources */,
+				B41B8BCA26B6A41900AC3BC0 /* AppDelegate.swift in Sources */,
+				B41B8BCC26B6A41900AC3BC0 /* SceneDelegate.swift in Sources */,
+				B41B8BE926B6A9B100AC3BC0 /* MMHomeTabBarController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B41B8BCF26B6A41900AC3BC0 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B41B8BD026B6A41900AC3BC0 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B41B8BD426B6A41A00AC3BC0 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B41B8BD526B6A41A00AC3BC0 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B41B8BD826B6A41A00AC3BC0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B41B8BD926B6A41A00AC3BC0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B41B8BDB26B6A41A00AC3BC0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2968B5B56E917299C0612D81 /* Pods-MMPDF_iOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = T6H68KJ4WD;
+				INFOPLIST_FILE = MMPDF_iOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mumu.ticiqi.MMPDF-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B41B8BDC26B6A41A00AC3BC0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9532F7AE5F0CA8A2D363035 /* Pods-MMPDF_iOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = T6H68KJ4WD;
+				INFOPLIST_FILE = MMPDF_iOS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mumu.ticiqi.MMPDF-iOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B41B8BC126B6A41900AC3BC0 /* Build configuration list for PBXProject "MMPDF_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B41B8BD826B6A41A00AC3BC0 /* Debug */,
+				B41B8BD926B6A41A00AC3BC0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B41B8BDA26B6A41A00AC3BC0 /* Build configuration list for PBXNativeTarget "MMPDF_iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B41B8BDB26B6A41A00AC3BC0 /* Debug */,
+				B41B8BDC26B6A41A00AC3BC0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B41B8BBE26B6A41900AC3BC0 /* Project object */;
+}
