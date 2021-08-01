@@ -10,7 +10,6 @@
 		A523763B05E0D5596A045959 /* Pods_MMPDF_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0824FD3FF7AC17C4B08D5A75 /* Pods_MMPDF_iOS.framework */; };
 		B41B8BCA26B6A41900AC3BC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41B8BC926B6A41900AC3BC0 /* AppDelegate.swift */; };
 		B41B8BCC26B6A41900AC3BC0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41B8BCB26B6A41900AC3BC0 /* SceneDelegate.swift */; };
-		B41B8BCE26B6A41900AC3BC0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41B8BCD26B6A41900AC3BC0 /* ViewController.swift */; };
 		B41B8BD126B6A41900AC3BC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B41B8BCF26B6A41900AC3BC0 /* Main.storyboard */; };
 		B41B8BD326B6A41A00AC3BC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B41B8BD226B6A41A00AC3BC0 /* Assets.xcassets */; };
 		B41B8BD626B6A41A00AC3BC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B41B8BD426B6A41A00AC3BC0 /* LaunchScreen.storyboard */; };
@@ -20,6 +19,8 @@
 		B41B8BE526B6A49E00AC3BC0 /* MMBaseViews.xib in Resources */ = {isa = PBXBuildFile; fileRef = B41B8BE126B6A49D00AC3BC0 /* MMBaseViews.xib */; };
 		B41B8BE726B6A85100AC3BC0 /* MMDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41B8BE626B6A85100AC3BC0 /* MMDefine.swift */; };
 		B41B8BE926B6A9B100AC3BC0 /* MMHomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41B8BE826B6A9B100AC3BC0 /* MMHomeTabBarController.swift */; };
+		B41B8BED26B6DD5500AC3BC0 /* MMPDFDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41B8BEB26B6DD5500AC3BC0 /* MMPDFDetailViewController.swift */; };
+		B41B8BEE26B6DD5500AC3BC0 /* MMPDFDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B41B8BEC26B6DD5500AC3BC0 /* MMPDFDetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +29,6 @@
 		B41B8BC626B6A41900AC3BC0 /* MMPDF_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MMPDF_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B41B8BC926B6A41900AC3BC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B41B8BCB26B6A41900AC3BC0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B41B8BCD26B6A41900AC3BC0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B41B8BD026B6A41900AC3BC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B41B8BD226B6A41A00AC3BC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B41B8BD526B6A41A00AC3BC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -39,6 +39,8 @@
 		B41B8BE126B6A49D00AC3BC0 /* MMBaseViews.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MMBaseViews.xib; sourceTree = "<group>"; };
 		B41B8BE626B6A85100AC3BC0 /* MMDefine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMDefine.swift; sourceTree = "<group>"; };
 		B41B8BE826B6A9B100AC3BC0 /* MMHomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMHomeTabBarController.swift; sourceTree = "<group>"; };
+		B41B8BEB26B6DD5500AC3BC0 /* MMPDFDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMPDFDetailViewController.swift; sourceTree = "<group>"; };
+		B41B8BEC26B6DD5500AC3BC0 /* MMPDFDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MMPDFDetailViewController.xib; sourceTree = "<group>"; };
 		E9532F7AE5F0CA8A2D363035 /* Pods-MMPDF_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMPDF_iOS.release.xcconfig"; path = "Target Support Files/Pods-MMPDF_iOS/Pods-MMPDF_iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,10 +86,10 @@
 		B41B8BC826B6A41900AC3BC0 /* MMPDF_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				B41B8BEA26B6DD3800AC3BC0 /* Detail */,
 				B41B8BDD26B6A49D00AC3BC0 /* Base */,
 				B41B8BC926B6A41900AC3BC0 /* AppDelegate.swift */,
 				B41B8BCB26B6A41900AC3BC0 /* SceneDelegate.swift */,
-				B41B8BCD26B6A41900AC3BC0 /* ViewController.swift */,
 				B41B8BCF26B6A41900AC3BC0 /* Main.storyboard */,
 				B41B8BD226B6A41A00AC3BC0 /* Assets.xcassets */,
 				B41B8BD426B6A41A00AC3BC0 /* LaunchScreen.storyboard */,
@@ -107,6 +109,15 @@
 				B41B8BE626B6A85100AC3BC0 /* MMDefine.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		B41B8BEA26B6DD3800AC3BC0 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				B41B8BEB26B6DD5500AC3BC0 /* MMPDFDetailViewController.swift */,
+				B41B8BEC26B6DD5500AC3BC0 /* MMPDFDetailViewController.xib */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		ECACCF44F9EB29413118A0CC /* Frameworks */ = {
@@ -176,6 +187,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B41B8BEE26B6DD5500AC3BC0 /* MMPDFDetailViewController.xib in Resources */,
 				B41B8BD626B6A41A00AC3BC0 /* LaunchScreen.storyboard in Resources */,
 				B41B8BD326B6A41A00AC3BC0 /* Assets.xcassets in Resources */,
 				B41B8BD126B6A41900AC3BC0 /* Main.storyboard in Resources */,
@@ -236,7 +248,7 @@
 				B41B8BE726B6A85100AC3BC0 /* MMDefine.swift in Sources */,
 				B41B8BE426B6A49E00AC3BC0 /* MMBaseViewController.swift in Sources */,
 				B41B8BE326B6A49E00AC3BC0 /* MMCustomNaviBar.swift in Sources */,
-				B41B8BCE26B6A41900AC3BC0 /* ViewController.swift in Sources */,
+				B41B8BED26B6DD5500AC3BC0 /* MMPDFDetailViewController.swift in Sources */,
 				B41B8BCA26B6A41900AC3BC0 /* AppDelegate.swift in Sources */,
 				B41B8BCC26B6A41900AC3BC0 /* SceneDelegate.swift in Sources */,
 				B41B8BE926B6A9B100AC3BC0 /* MMHomeTabBarController.swift in Sources */,
@@ -390,11 +402,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T6H68KJ4WD;
 				INFOPLIST_FILE = MMPDF_iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mumu.ticiqi.MMPDF-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mumu.pdf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -410,11 +423,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = T6H68KJ4WD;
 				INFOPLIST_FILE = MMPDF_iOS/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.mumu.ticiqi.MMPDF-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mumu.pdf;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

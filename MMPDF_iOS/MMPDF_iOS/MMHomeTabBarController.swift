@@ -9,9 +9,22 @@ import UIKit
 
 class MMHomeTabBarController: UITabBarController {
 
+    lazy var detailVC: MMPDFDetailViewController = {
+        let item = MMPDFDetailViewController(nibName: "MMPDFDetailViewController", bundle: nil)
+        return item
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        addChildVC()
+    }
+    
+    func addChildVC() -> Void {
+        let nav = MMBaseNavigationController(rootViewController: detailVC)
+        nav.tabBarItem.title = "目录"
+        nav.tabBarItem.image = UIImage(named: "ic_home")
+        addChild(nav)
         
-        // Do any additional setup after loading the view.
+        selectedIndex = 0
     }
 }

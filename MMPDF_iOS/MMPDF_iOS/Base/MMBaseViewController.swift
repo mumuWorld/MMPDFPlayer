@@ -20,8 +20,7 @@ class MMBaseViewController: UIViewController {
         let item = UIView()
         return item
     }()
-    
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(containerView)
@@ -34,5 +33,17 @@ class MMBaseViewController: UIViewController {
             make.top.leading.trailing.equalToSuperview()
             make.height.equalTo(kNavigationBarHeight)
         }
+        naviBar.isHidden = isHideNavibar
     }
+}
+
+extension MMBaseViewController {
+    open var isHideNavibar: Bool {
+        return false
+    }
+    
+    open var isHideBackBtn: Bool {
+        return false
+    }
+    
 }
