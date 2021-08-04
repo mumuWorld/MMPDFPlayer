@@ -27,6 +27,16 @@ public var kStatusBarHeight: CGFloat = {
     }
 }()
 
+public var kBottomSafeSpacing: CGFloat = {
+    if #available(iOS 11.0, *) {
+        let height = application.delegate?.window??.safeAreaInsets.bottom ?? 0.0
+        if height > 20 {
+            return height
+        }
+    }
+    return 0
+}()
+
 public let kNavigationHeight: CGFloat = 44
 
 public var kNavigationBarHeight: CGFloat = kNavigationHeight + kStatusBarHeight

@@ -9,8 +9,10 @@ import UIKit
 
 class MMHomeTabBarController: UITabBarController {
 
-    lazy var detailVC: MMPDFDetailViewController = {
-        let item = MMPDFDetailViewController(nibName: "MMPDFDetailViewController", bundle: nil)
+    
+    
+    lazy var homeVC: MMHomeViewController = {
+        let item = MMHomeViewController(nibName: "MMHomeViewController", bundle: nil)
         return item
     }()
     
@@ -20,7 +22,7 @@ class MMHomeTabBarController: UITabBarController {
     }
     
     func addChildVC() -> Void {
-        let nav = MMBaseNavigationController(rootViewController: detailVC)
+        let nav = MMBaseNavigationController(rootViewController: homeVC)
         nav.tabBarItem.title = "目录"
         nav.tabBarItem.image = UIImage(named: "ic_home")
         addChild(nav)

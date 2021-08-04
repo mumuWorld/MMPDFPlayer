@@ -22,6 +22,10 @@
 		B41B8BED26B6DD5500AC3BC0 /* MMPDFDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41B8BEB26B6DD5500AC3BC0 /* MMPDFDetailViewController.swift */; };
 		B41B8BEE26B6DD5500AC3BC0 /* MMPDFDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B41B8BEC26B6DD5500AC3BC0 /* MMPDFDetailViewController.xib */; };
 		B41B8BF026B6ECBC00AC3BC0 /* Swift 开发者必备 Tips (第四版).pdf in Resources */ = {isa = PBXBuildFile; fileRef = B41B8BEF26B6ECBC00AC3BC0 /* Swift 开发者必备 Tips (第四版).pdf */; };
+		B4992ED426BAF78C004BFD4C /* MMThumbnailPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4992ED226BAF78C004BFD4C /* MMThumbnailPageCell.swift */; };
+		B4992ED526BAF78C004BFD4C /* MMThumbnailPageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4992ED326BAF78C004BFD4C /* MMThumbnailPageCell.xib */; };
+		B4992EDB26BAFD3D004BFD4C /* MMHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4992ED926BAFD3D004BFD4C /* MMHomeViewController.swift */; };
+		B4992EDC26BAFD3D004BFD4C /* MMHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4992EDA26BAFD3D004BFD4C /* MMHomeViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +47,10 @@
 		B41B8BEB26B6DD5500AC3BC0 /* MMPDFDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMPDFDetailViewController.swift; sourceTree = "<group>"; };
 		B41B8BEC26B6DD5500AC3BC0 /* MMPDFDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MMPDFDetailViewController.xib; sourceTree = "<group>"; };
 		B41B8BEF26B6ECBC00AC3BC0 /* Swift 开发者必备 Tips (第四版).pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Swift 开发者必备 Tips (第四版).pdf"; sourceTree = "<group>"; };
+		B4992ED226BAF78C004BFD4C /* MMThumbnailPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMThumbnailPageCell.swift; sourceTree = "<group>"; };
+		B4992ED326BAF78C004BFD4C /* MMThumbnailPageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MMThumbnailPageCell.xib; sourceTree = "<group>"; };
+		B4992ED926BAFD3D004BFD4C /* MMHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMHomeViewController.swift; sourceTree = "<group>"; };
+		B4992EDA26BAFD3D004BFD4C /* MMHomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MMHomeViewController.xib; sourceTree = "<group>"; };
 		E9532F7AE5F0CA8A2D363035 /* Pods-MMPDF_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMPDF_iOS.release.xcconfig"; path = "Target Support Files/Pods-MMPDF_iOS/Pods-MMPDF_iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,6 +96,7 @@
 		B41B8BC826B6A41900AC3BC0 /* MMPDF_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				B4992ED626BAFCC2004BFD4C /* Home */,
 				B41B8BEF26B6ECBC00AC3BC0 /* Swift 开发者必备 Tips (第四版).pdf */,
 				B41B8BEA26B6DD3800AC3BC0 /* Detail */,
 				B41B8BDD26B6A49D00AC3BC0 /* Base */,
@@ -117,10 +126,29 @@
 		B41B8BEA26B6DD3800AC3BC0 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				B4992ED126BAF75A004BFD4C /* View */,
 				B41B8BEB26B6DD5500AC3BC0 /* MMPDFDetailViewController.swift */,
 				B41B8BEC26B6DD5500AC3BC0 /* MMPDFDetailViewController.xib */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		B4992ED126BAF75A004BFD4C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B4992ED226BAF78C004BFD4C /* MMThumbnailPageCell.swift */,
+				B4992ED326BAF78C004BFD4C /* MMThumbnailPageCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B4992ED626BAFCC2004BFD4C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B4992ED926BAFD3D004BFD4C /* MMHomeViewController.swift */,
+				B4992EDA26BAFD3D004BFD4C /* MMHomeViewController.xib */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		ECACCF44F9EB29413118A0CC /* Frameworks */ = {
@@ -191,7 +219,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B41B8BEE26B6DD5500AC3BC0 /* MMPDFDetailViewController.xib in Resources */,
+				B4992ED526BAF78C004BFD4C /* MMThumbnailPageCell.xib in Resources */,
 				B41B8BD626B6A41A00AC3BC0 /* LaunchScreen.storyboard in Resources */,
+				B4992EDC26BAFD3D004BFD4C /* MMHomeViewController.xib in Resources */,
 				B41B8BD326B6A41A00AC3BC0 /* Assets.xcassets in Resources */,
 				B41B8BF026B6ECBC00AC3BC0 /* Swift 开发者必备 Tips (第四版).pdf in Resources */,
 				B41B8BD126B6A41900AC3BC0 /* Main.storyboard in Resources */,
@@ -249,12 +279,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B41B8BE226B6A49E00AC3BC0 /* MMBaseNavigationController.swift in Sources */,
+				B4992EDB26BAFD3D004BFD4C /* MMHomeViewController.swift in Sources */,
 				B41B8BE726B6A85100AC3BC0 /* MMDefine.swift in Sources */,
 				B41B8BE426B6A49E00AC3BC0 /* MMBaseViewController.swift in Sources */,
 				B41B8BE326B6A49E00AC3BC0 /* MMCustomNaviBar.swift in Sources */,
 				B41B8BED26B6DD5500AC3BC0 /* MMPDFDetailViewController.swift in Sources */,
 				B41B8BCA26B6A41900AC3BC0 /* AppDelegate.swift in Sources */,
 				B41B8BCC26B6A41900AC3BC0 /* SceneDelegate.swift in Sources */,
+				B4992ED426BAF78C004BFD4C /* MMThumbnailPageCell.swift in Sources */,
 				B41B8BE926B6A9B100AC3BC0 /* MMHomeTabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

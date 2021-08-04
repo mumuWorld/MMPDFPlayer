@@ -25,7 +25,7 @@ class MMBaseViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(containerView)
         view.addSubview(naviBar)
-        
+        hidesBottomBarWhenPushed = true
         containerView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
