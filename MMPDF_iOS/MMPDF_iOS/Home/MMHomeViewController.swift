@@ -8,12 +8,7 @@
 import UIKit
 
 class MMHomeViewController: MMBaseViewController {
-    
-    lazy var detailVC: MMPDFDetailViewController = {
-        let item = MMPDFDetailViewController(nibName: "MMPDFDetailViewController", bundle: nil)
-        return item
-    }()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         containerView.isHidden = true
@@ -22,7 +17,7 @@ class MMHomeViewController: MMBaseViewController {
 
 
     @IBAction func handleClick(_ sender: UIButton) {
-        navigationController?.pushViewController(detailVC, animated: true)
+        navigationController?.pushViewController(MMPDFDetailViewController(), animated: true)
     }
     /*
     // MARK: - Navigation

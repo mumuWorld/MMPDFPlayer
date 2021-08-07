@@ -14,10 +14,16 @@ class MMCustomNaviBar: UIView {
     
     @IBOutlet weak var titleLabel: UILabel!
     
+    @IBOutlet weak var containerView: UIView!
+    
     var handleDismiss: (() -> Void)?
     
 
     @IBAction func handleClick(_ sender: UIButton) {
         handleDismiss?()
+    }
+    
+    func mm_addSubView(_ view: UIView) -> Void {
+        containerView.addSubview(view)
     }
 }

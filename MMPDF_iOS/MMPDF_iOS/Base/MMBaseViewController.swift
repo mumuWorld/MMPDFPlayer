@@ -13,6 +13,9 @@ class MMBaseViewController: UIViewController {
     
     lazy var naviBar: MMCustomNaviBar = {
         let item: MMCustomNaviBar = UINib.init(nibName: "MMBaseViews", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! MMCustomNaviBar
+        item.handleDismiss = { [weak self] in
+            self?.dismiss()
+        }
         return item
     }()
     
@@ -38,6 +41,19 @@ class MMBaseViewController: UIViewController {
 }
 
 extension MMBaseViewController {
+    
+    open func dismiss() {
+        guard let nav = navigationController else {
+            dismiss(animated: true, completion: nil)
+            return
+        }
+        if nav.viewControllers.count > 1 {
+            nav.popViewController(animated: true)
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
     open var isHideNavibar: Bool {
         return false
     }
