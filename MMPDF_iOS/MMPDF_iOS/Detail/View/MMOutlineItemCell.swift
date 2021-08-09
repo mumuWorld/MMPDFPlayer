@@ -14,7 +14,7 @@ class MMOutlineItemCell: UITableViewCell {
             guard let t_item = item else { return }
             titleLabel.font = getFitFont(item: t_item)
             titleLabel.text = t_item.outline.label
-            title_leading.constant = CGFloat(t_item.level * 8 + 8)
+            title_leading.constant = CGFloat(t_item.level * 16 + 8)
             pageCountLabel.text = t_item.outline.destination?.page?.label
         }
     }

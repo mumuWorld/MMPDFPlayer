@@ -12,7 +12,7 @@ class MMHomeViewController: MMBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         containerView.isHidden = true
-        // Do any additional setup after loading the view.
+        
     }
 
 

@@ -22,8 +22,15 @@ class MMPDFDetailViewController: MMBaseViewController {
     
     lazy var pdfView: PDFView = {
         let item = PDFView()
+        item.displayMode = .singlePage
+        item.displayDirection = .horizontal
+//        item.canGoBack = true
+//        item.canGoForward = true
+        item.displaysAsBook = true
+        item.delegate = self
         item.autoScales = true
         item.isUserInteractionEnabled = true
+        item.usePageViewController(true, withViewOptions: [:])
         return item
     }()
     
@@ -77,7 +84,9 @@ class MMPDFDetailViewController: MMBaseViewController {
         
         containerView.addSubview(pdfView)
         pdfView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(naviBar.snp.bottom)
+            make.bottom.equalToSuperview().offset(-100)
         }
         
         pdfView.document = document
@@ -92,6 +101,11 @@ class MMPDFDetailViewController: MMBaseViewController {
         //创建略缩图
         thumbnaisView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        //隐藏滚动条
+        if let pdfScrollView = pdfView.subviews.first?.subviews.first as? UIScrollView {
+            pdfScrollView.showsHorizontalScrollIndicator = false
+            pdfScrollView.showsVerticalScrollIndicator = false
         }
     }
     
@@ -116,9 +130,7 @@ extension MMPDFDetailViewController {
         menuView.dataArray = dataArray
         popManager.show(view: menuView, popType: .left)
     }
-}
-
-extension MMPDFDetailViewController {
+    
     func setNaviBar() {
         naviBar.mm_addSubView(menuBtn)
         menuBtn.snp.makeConstraints { make in
@@ -127,6 +139,30 @@ extension MMPDFDetailViewController {
         }
     }
 }
+
+extension MMPDFDetailViewController : PDFViewDelegate {
+//    func pdfViewWillClick(onLink sender: PDFView, with url: URL) {
+//        mm_print("点击链接->\(url)")
+//    }
+    
+    func pdfViewParentViewController() -> UIViewController {
+        mm_print("->")
+        return self
+    }
+    
+    func pdfViewPerformFind(_ sender: PDFView) {
+        mm_print("->")
+    }
+    
+    func pdfViewPerformGo(toPage sender: PDFView) {
+        mm_print("->")
+    }
+    
+    func pdfViewOpenPDF(_ sender: PDFView, forRemoteGoToAction action: PDFActionRemoteGoTo) {
+        mm_print("->")
+    }
+}
+
 extension MMPDFDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         document?.pageCount ?? 0
