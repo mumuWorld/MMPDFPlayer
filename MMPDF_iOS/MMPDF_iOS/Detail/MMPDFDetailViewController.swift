@@ -73,14 +73,26 @@ class MMPDFDetailViewController: MMBaseViewController {
         return item
     }()
     
+    init(asset: MMAsset) {
+        super.init(nibName: nil, bundle: nil)
+        guard let url = asset.path else {
+            return
+        }
+        document = PDFDocument(url: url)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         containerView.backgroundColor = .red
         setNaviBar()
         
-        let path = Bundle.main.path(forResource: "Swift 开发者必备 Tips (第四版)", ofType: "pdf") ?? ""
-        let url = URL(fileURLWithPath: path)
-        document = PDFDocument(url: url)
+//        let path = Bundle.main.path(forResource: "Swift 开发者必备 Tips (第四版)", ofType: "pdf") ?? ""
+//        let url = URL(fileURLWithPath: path)
+//        document = PDFDocument(url: url)
         
         containerView.addSubview(pdfView)
         pdfView.snp.makeConstraints { make in
@@ -90,6 +102,7 @@ class MMPDFDetailViewController: MMBaseViewController {
         }
         
         pdfView.document = document
+        self.naviBar.titleLabel.text = document?.string
         
         bottomToolView.addSubview(thumbnaisView)
         containerView.addSubview(bottomToolView)
@@ -107,6 +120,24 @@ class MMPDFDetailViewController: MMBaseViewController {
             pdfScrollView.showsHorizontalScrollIndicator = false
             pdfScrollView.showsVerticalScrollIndicator = false
         }
+        let pageNumber = UserDefaults.standard.integer(forKey: "curPage")
+        if pageNumber > 0, let pdfPage = document?.page(at: pageNumber) {
+            pdfView.go(to: pdfPage)
+        }
+        
+        registreNotify()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        mm_print("->")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        mm_print("->")
+        let page = max(pdfView.currentPage?.pageRef?.pageNumber ?? 1, 1) - 1
+        UserDefaults.standard.set(page, forKey: "curPage")
     }
     
     @discardableResult
@@ -175,5 +206,17 @@ extension MMPDFDetailViewController: UICollectionViewDelegate, UICollectionViewD
             cell.thumbnailImgView.image = thum
         }
         return cell
+    }
+}
+
+extension MMPDFDetailViewController {
+    
+    @objc func handleNotify(sender: Notification) {
+        let page = max(pdfView.currentPage?.pageRef?.pageNumber ?? 1, 1) - 1
+        UserDefaults.standard.set(page, forKey: "curPage")
+    }
+    
+    func registreNotify() -> Void {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNotify(sender:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
 }
