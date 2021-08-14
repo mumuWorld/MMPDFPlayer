@@ -70,7 +70,7 @@ extension MMPopManager {
         if popType == .left {
             popContainerView.mm_height = supView.mm_height
             popContainerView.mm_width = ceil(supView.mm_width * 0.7)
-            popContainerView.origin = CGPoint(x: -popContainerView.mm_width, y: 0)
+            popContainerView.mm_origin = CGPoint(x: -popContainerView.mm_width, y: 0)
             showAniBlock = { [weak self] in
                 guard let self = self else { return }
                 self.popContainerView.mm_x = 0

@@ -21,7 +21,6 @@
 		B41B8BE926B6A9B100AC3BC0 /* MMHomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41B8BE826B6A9B100AC3BC0 /* MMHomeTabBarController.swift */; };
 		B41B8BED26B6DD5500AC3BC0 /* MMPDFDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41B8BEB26B6DD5500AC3BC0 /* MMPDFDetailViewController.swift */; };
 		B41B8BEE26B6DD5500AC3BC0 /* MMPDFDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B41B8BEC26B6DD5500AC3BC0 /* MMPDFDetailViewController.xib */; };
-		B41B8BF026B6ECBC00AC3BC0 /* Swift 开发者必备 Tips (第四版).pdf in Resources */ = {isa = PBXBuildFile; fileRef = B41B8BEF26B6ECBC00AC3BC0 /* Swift 开发者必备 Tips (第四版).pdf */; };
 		B47FFDCC26C192CB00C7D179 /* MMAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47FFDCB26C192CB00C7D179 /* MMAsset.swift */; };
 		B47FFDCF26C1936500C7D179 /* MMAssetCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47FFDCD26C1936500C7D179 /* MMAssetCollectionCell.swift */; };
 		B47FFDD026C1936500C7D179 /* MMAssetCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B47FFDCE26C1936500C7D179 /* MMAssetCollectionCell.xib */; };
@@ -37,6 +36,7 @@
 		B4992EDB26BAFD3D004BFD4C /* MMHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4992ED926BAFD3D004BFD4C /* MMHomeViewController.swift */; };
 		B4992EDC26BAFD3D004BFD4C /* MMHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4992EDA26BAFD3D004BFD4C /* MMHomeViewController.xib */; };
 		B49E384726C7524400BD640B /* Date+MM_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49E384626C7524400BD640B /* Date+MM_Extension.swift */; };
+		B49E384926C7C81800BD640B /* MMDetailPageCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49E384826C7C81800BD640B /* MMDetailPageCountView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,7 +57,6 @@
 		B41B8BE826B6A9B100AC3BC0 /* MMHomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMHomeTabBarController.swift; sourceTree = "<group>"; };
 		B41B8BEB26B6DD5500AC3BC0 /* MMPDFDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMPDFDetailViewController.swift; sourceTree = "<group>"; };
 		B41B8BEC26B6DD5500AC3BC0 /* MMPDFDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MMPDFDetailViewController.xib; sourceTree = "<group>"; };
-		B41B8BEF26B6ECBC00AC3BC0 /* Swift 开发者必备 Tips (第四版).pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Swift 开发者必备 Tips (第四版).pdf"; sourceTree = "<group>"; };
 		B47FFDCB26C192CB00C7D179 /* MMAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMAsset.swift; sourceTree = "<group>"; };
 		B47FFDCD26C1936500C7D179 /* MMAssetCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMAssetCollectionCell.swift; sourceTree = "<group>"; };
 		B47FFDCE26C1936500C7D179 /* MMAssetCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MMAssetCollectionCell.xib; sourceTree = "<group>"; };
@@ -73,6 +72,7 @@
 		B4992ED926BAFD3D004BFD4C /* MMHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMHomeViewController.swift; sourceTree = "<group>"; };
 		B4992EDA26BAFD3D004BFD4C /* MMHomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MMHomeViewController.xib; sourceTree = "<group>"; };
 		B49E384626C7524400BD640B /* Date+MM_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+MM_Extension.swift"; sourceTree = "<group>"; };
+		B49E384826C7C81800BD640B /* MMDetailPageCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMDetailPageCountView.swift; sourceTree = "<group>"; };
 		E9532F7AE5F0CA8A2D363035 /* Pods-MMPDF_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMPDF_iOS.release.xcconfig"; path = "Target Support Files/Pods-MMPDF_iOS/Pods-MMPDF_iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,7 +120,6 @@
 			children = (
 				B48AD53026BEC83E005AB054 /* Util */,
 				B4992ED626BAFCC2004BFD4C /* Home */,
-				B41B8BEF26B6ECBC00AC3BC0 /* Swift 开发者必备 Tips (第四版).pdf */,
 				B41B8BEA26B6DD3800AC3BC0 /* Detail */,
 				B41B8BDD26B6A49D00AC3BC0 /* Base */,
 				B41B8BC926B6A41900AC3BC0 /* AppDelegate.swift */,
@@ -184,6 +183,7 @@
 				B48AD52A26BEC6C9005AB054 /* MMPDFOutlineView.swift */,
 				B48AD52C26BEC80D005AB054 /* MMOutlineItemCell.swift */,
 				B48AD52D26BEC80D005AB054 /* MMOutlineItemCell.xib */,
+				B49E384826C7C81800BD640B /* MMDetailPageCountView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -273,7 +273,6 @@
 				B4992EDC26BAFD3D004BFD4C /* MMHomeViewController.xib in Resources */,
 				B47FFDD026C1936500C7D179 /* MMAssetCollectionCell.xib in Resources */,
 				B41B8BD326B6A41A00AC3BC0 /* Assets.xcassets in Resources */,
-				B41B8BF026B6ECBC00AC3BC0 /* Swift 开发者必备 Tips (第四版).pdf in Resources */,
 				B41B8BD126B6A41900AC3BC0 /* Main.storyboard in Resources */,
 				B48AD52F26BEC80D005AB054 /* MMOutlineItemCell.xib in Resources */,
 				B41B8BE526B6A49E00AC3BC0 /* MMBaseViews.xib in Resources */,
@@ -337,6 +336,7 @@
 				B48AD52E26BEC80D005AB054 /* MMOutlineItemCell.swift in Sources */,
 				B48AD53726BED787005AB054 /* UIKit+Extension.swift in Sources */,
 				B41B8BE426B6A49E00AC3BC0 /* MMBaseViewController.swift in Sources */,
+				B49E384926C7C81800BD640B /* MMDetailPageCountView.swift in Sources */,
 				B48AD52B26BEC6C9005AB054 /* MMPDFOutlineView.swift in Sources */,
 				B47FFDCC26C192CB00C7D179 /* MMAsset.swift in Sources */,
 				B41B8BE326B6A49E00AC3BC0 /* MMCustomNaviBar.swift in Sources */,

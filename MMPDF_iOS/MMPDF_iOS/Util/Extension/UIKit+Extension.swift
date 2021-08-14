@@ -94,7 +94,7 @@ extension UIView {
         }
     }
     
-    var origin: CGPoint {
+    var mm_origin: CGPoint {
         set {
             frame.origin = newValue
         }
@@ -103,3 +103,12 @@ extension UIView {
         }
     }
 }
+
+extension UIView {
+    func mm_cornerRadius(_ radius: CGFloat) -> Void {
+        layer.cornerRadius = radius
+        layer.masksToBounds = true
+    }
+}
+
+

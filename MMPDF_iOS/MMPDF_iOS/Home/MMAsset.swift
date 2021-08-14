@@ -76,12 +76,12 @@ struct MMAsset {
     
     init(path: URL) {
         self.path = path
-        name = path.lastPathComponent
+        name = path.lastPathComponent.components(separatedBy: ".").first ?? ""
         pathExtension = path.pathExtension
         do {
             let attr = try FileManager.default.attributesOfItem(atPath: path.path)
             
-//            let sysAttr = try FileManager.default.attributesOfFileSystem(forPath: path.path)
+//            let sysAttr = try FileManager.3981default.attributesOfFileSystem(forPath: path.path)
 //                mm_print(attr)
             if let type = attr[FileAttributeKey.type] as? FileAttributeType {
                 fileType = type

@@ -37,8 +37,10 @@ public var kBottomSafeSpacing: CGFloat = {
     return 0
 }()
 
+/// 导航栏 44
 public let kNavigationHeight: CGFloat = 44
 
+/// 导航栏+状态栏
 public var kNavigationBarHeight: CGFloat = kNavigationHeight + kStatusBarHeight
 
 let vNormalSpacing: CGFloat = 8

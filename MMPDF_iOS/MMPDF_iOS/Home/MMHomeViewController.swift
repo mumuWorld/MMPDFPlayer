@@ -19,10 +19,11 @@ class MMHomeViewController: MMBaseViewController {
         layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
         layout.minimumLineSpacing = vNormalSpacing
         layout.minimumInteritemSpacing = vNormalSpacing
-        layout.sectionInset = UIEdgeInsets(top: 0, left: vNormalSpacing, bottom: kBottomSafeSpacing + 20, right: vNormalSpacing)
+        layout.sectionInset = UIEdgeInsets(top: vNormalSpacing, left: vNormalSpacing, bottom: kBottomSafeSpacing + 20, right: vNormalSpacing)
         
         let item = UICollectionView.init(frame: .zero, collectionViewLayout: layout)
         item.register(UINib(nibName: "MMAssetCollectionCell", bundle: nil), forCellWithReuseIdentifier: "MMAssetCollectionCell")
+        item.bounces = true
         item.delegate = self
         item.dataSource = self
         item.backgroundColor = .clear
@@ -41,7 +42,8 @@ class MMHomeViewController: MMBaseViewController {
         containerView.backgroundColor = .lightGray
         
         collectionView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(naviBar.snp.bottom)
         }
         guard let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .allDomainsMask, true).first else {
             return
