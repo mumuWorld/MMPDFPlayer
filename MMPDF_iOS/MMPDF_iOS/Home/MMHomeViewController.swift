@@ -7,11 +7,20 @@
 
 import UIKit
 
+
 class MMHomeViewController: MMBaseViewController {
+    
+    let itemWidth = floor((kScreenWidth - vNormalSpacing * 5) / 3)
+    var itemHeight: CGFloat = 0
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: kScreenWidth * 0.3, height: 200)
+        layout.scrollDirection = .vertical
+        layout.itemSize = CGSize(width: itemWidth, height: itemHeight)
+        layout.minimumLineSpacing = vNormalSpacing
+        layout.minimumInteritemSpacing = vNormalSpacing
+        layout.sectionInset = UIEdgeInsets(top: 0, left: vNormalSpacing, bottom: kBottomSafeSpacing + 20, right: vNormalSpacing)
+        
         let item = UICollectionView.init(frame: .zero, collectionViewLayout: layout)
         item.register(UINib(nibName: "MMAssetCollectionCell", bundle: nil), forCellWithReuseIdentifier: "MMAssetCollectionCell")
         item.delegate = self
@@ -24,8 +33,12 @@ class MMHomeViewController: MMBaseViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        itemHeight = floor(itemWidth / 111 * 150)
+        naviBar.titleLabel.text = "本地文件"
+        naviBar.backBtn.isHidden = true
 //        containerView.isHidden = true
         containerView.addSubview(collectionView)
+        containerView.backgroundColor = .lightGray
         
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -33,6 +46,7 @@ class MMHomeViewController: MMBaseViewController {
         guard let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .allDomainsMask, true).first else {
             return
         }
+        mm_print(path)
         // file:///var/mobile/Containers/Data/Application/C7596598-A4E8-4F5E-A3CB-089B2EE2D092/Documents/
         let fileUrl = URL(fileURLWithPath: path)
         // /var/mobile/Containers/Data/Application/C7596598-A4E8-4F5E-A3CB-089B2EE2D092/Documents
@@ -41,7 +55,7 @@ class MMHomeViewController: MMBaseViewController {
             let documents = try FileManager.default.contentsOfDirectory(at: fileUrl, includingPropertiesForKeys: [], options: .skipsSubdirectoryDescendants)
             
             for document in documents {
-                let item = MMAsset(name: "", path: document)
+                let item = MMAsset(path: document)
                 assetsArray.append(item)
             }
             mm_print("")
@@ -50,23 +64,14 @@ class MMHomeViewController: MMBaseViewController {
             mm_print(e)
         }
         
-        
+        let float = String(format: "%.1f",  Float(10/3))
+        mm_print(float)
     }
 
 
     @IBAction func handleClick(_ sender: UIButton) {
 //        navigationController?.pushViewController(MMPDFDetailViewController(), animated: true)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension MMHomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -77,6 +82,7 @@ extension MMHomeViewController: UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MMAssetCollectionCell", for: indexPath) as! MMAssetCollectionCell
         cell.contentView.backgroundColor = .yellow
+        cell.setupItem(item: assetsArray[indexPath.row], size: CGSize(width: itemWidth, height: itemHeight))
         return cell
     }
     

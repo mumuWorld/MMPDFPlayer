@@ -6,7 +6,7 @@ target 'MMPDF_iOS' do
   use_frameworks!
 
   pod 'SnapKit'
-
+  pod 'Kingfisher'
   # Pods for MMPDF_iOS
 
 end

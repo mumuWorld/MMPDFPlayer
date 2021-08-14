@@ -41,6 +41,8 @@ public let kNavigationHeight: CGFloat = 44
 
 public var kNavigationBarHeight: CGFloat = kNavigationHeight + kStatusBarHeight
 
+let vNormalSpacing: CGFloat = 8
+
 
 func mm_print(_ messages : Any..., file : String = #file, funcName : String = #function, lineNum : Int = #line) {
     #if DEBUG
