@@ -28,6 +28,10 @@
 		B4823DA726C90FAC008CD73E /* MMMorePopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4823DA626C90FAC008CD73E /* MMMorePopViewController.swift */; };
 		B4823DAA26C91290008CD73E /* MMSingLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4823DA826C91290008CD73E /* MMSingLabelCell.swift */; };
 		B4823DAB26C91290008CD73E /* MMSingLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4823DA926C91290008CD73E /* MMSingLabelCell.xib */; };
+		B4823DAE26C93800008CD73E /* MMUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4823DAD26C93800008CD73E /* MMUserViewController.swift */; };
+		B4823DB026C95720008CD73E /* MMCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4823DAF26C95720008CD73E /* MMCellItem.swift */; };
+		B4823DB326C95E19008CD73E /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4823DB226C95E19008CD73E /* String+Extension.swift */; };
+		B4823DB526C9647F008CD73E /* MMColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4823DB426C9647F008CD73E /* MMColors.swift */; };
 		B48AD52B26BEC6C9005AB054 /* MMPDFOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48AD52A26BEC6C9005AB054 /* MMPDFOutlineView.swift */; };
 		B48AD52E26BEC80D005AB054 /* MMOutlineItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48AD52C26BEC80D005AB054 /* MMOutlineItemCell.swift */; };
 		B48AD52F26BEC80D005AB054 /* MMOutlineItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B48AD52D26BEC80D005AB054 /* MMOutlineItemCell.xib */; };
@@ -68,6 +72,10 @@
 		B4823DA626C90FAC008CD73E /* MMMorePopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMMorePopViewController.swift; sourceTree = "<group>"; };
 		B4823DA826C91290008CD73E /* MMSingLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMSingLabelCell.swift; sourceTree = "<group>"; };
 		B4823DA926C91290008CD73E /* MMSingLabelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MMSingLabelCell.xib; sourceTree = "<group>"; };
+		B4823DAD26C93800008CD73E /* MMUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMUserViewController.swift; sourceTree = "<group>"; };
+		B4823DAF26C95720008CD73E /* MMCellItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMCellItem.swift; sourceTree = "<group>"; };
+		B4823DB226C95E19008CD73E /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		B4823DB426C9647F008CD73E /* MMColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMColors.swift; sourceTree = "<group>"; };
 		B48AD52A26BEC6C9005AB054 /* MMPDFOutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMPDFOutlineView.swift; sourceTree = "<group>"; };
 		B48AD52C26BEC80D005AB054 /* MMOutlineItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMOutlineItemCell.swift; sourceTree = "<group>"; };
 		B48AD52D26BEC80D005AB054 /* MMOutlineItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MMOutlineItemCell.xib; sourceTree = "<group>"; };
@@ -126,6 +134,7 @@
 		B41B8BC826B6A41900AC3BC0 /* MMPDF_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				B4823DAC26C937DF008CD73E /* User */,
 				B48AD53026BEC83E005AB054 /* Util */,
 				B4992ED626BAFCC2004BFD4C /* Home */,
 				B41B8BEA26B6DD3800AC3BC0 /* Detail */,
@@ -169,8 +178,17 @@
 				B4823DA826C91290008CD73E /* MMSingLabelCell.swift */,
 				B4823DA926C91290008CD73E /* MMSingLabelCell.xib */,
 				B4823DA626C90FAC008CD73E /* MMMorePopViewController.swift */,
+				B4823DAF26C95720008CD73E /* MMCellItem.swift */,
 			);
 			path = Sub;
+			sourceTree = "<group>";
+		};
+		B4823DAC26C937DF008CD73E /* User */ = {
+			isa = PBXGroup;
+			children = (
+				B4823DAD26C93800008CD73E /* MMUserViewController.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		B48AD53026BEC83E005AB054 /* Util */ = {
@@ -178,6 +196,7 @@
 			children = (
 				B48AD53126BEC847005AB054 /* Extension */,
 				B48AD53426BED03F005AB054 /* MMPopManager.swift */,
+				B4823DB426C9647F008CD73E /* MMColors.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -185,6 +204,7 @@
 		B48AD53126BEC847005AB054 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				B4823DB226C95E19008CD73E /* String+Extension.swift */,
 				B49E384626C7524400BD640B /* Date+MM_Extension.swift */,
 				B48AD53626BED787005AB054 /* UIKit+Extension.swift */,
 				B48AD53226BEC84F005AB054 /* UITableView+Extension.swift */,
@@ -355,13 +375,17 @@
 				B4823DA426C908A8008CD73E /* UIButton+TransExtension.swift in Sources */,
 				B4992EDB26BAFD3D004BFD4C /* MMHomeViewController.swift in Sources */,
 				B41B8BE726B6A85100AC3BC0 /* MMDefine.swift in Sources */,
+				B4823DB326C95E19008CD73E /* String+Extension.swift in Sources */,
 				B48AD52E26BEC80D005AB054 /* MMOutlineItemCell.swift in Sources */,
+				B4823DB026C95720008CD73E /* MMCellItem.swift in Sources */,
 				B48AD53726BED787005AB054 /* UIKit+Extension.swift in Sources */,
 				B41B8BE426B6A49E00AC3BC0 /* MMBaseViewController.swift in Sources */,
 				B49E384926C7C81800BD640B /* MMDetailPageCountView.swift in Sources */,
+				B4823DB526C9647F008CD73E /* MMColors.swift in Sources */,
 				B48AD52B26BEC6C9005AB054 /* MMPDFOutlineView.swift in Sources */,
 				B47FFDCC26C192CB00C7D179 /* MMAsset.swift in Sources */,
 				B41B8BE326B6A49E00AC3BC0 /* MMCustomNaviBar.swift in Sources */,
+				B4823DAE26C93800008CD73E /* MMUserViewController.swift in Sources */,
 				B41B8BED26B6DD5500AC3BC0 /* MMPDFDetailViewController.swift in Sources */,
 				B41B8BCA26B6A41900AC3BC0 /* AppDelegate.swift in Sources */,
 				B47FFDCF26C1936500C7D179 /* MMAssetCollectionCell.swift in Sources */,

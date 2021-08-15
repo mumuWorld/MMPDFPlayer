@@ -42,7 +42,6 @@ class MMHomeViewController: MMBaseViewController {
         super.viewDidLoad()
         setNaviBar()
         containerView.addSubview(collectionView)
-        containerView.backgroundColor = .lightGray
 
         collectionView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
@@ -68,16 +67,16 @@ class MMHomeViewController: MMBaseViewController {
         } catch let e {
             mm_print(e)
         }
-        
-        let float = String(format: "%.1f",  Float(10/3))
-        mm_print(float)
     }
 }
 
 extension MMHomeViewController {
     @objc func handleClick(sender: UIButton) {
-        guard let widow = application.delegate?.window else { return }
-        let moreVC = MMMorePopViewController()
+//        guard let widow = application.delegate?.window else { return }
+        let dataArray = [MMCellItem(title: "从本地添加", handleAction: { param in
+            
+        })]
+        let moreVC = MMMorePopViewController(dataArray: dataArray)
         moreVC.preferredContentSize = CGSize(width: 100, height: 54)
         moreVC.modalPresentationStyle = .popover
 

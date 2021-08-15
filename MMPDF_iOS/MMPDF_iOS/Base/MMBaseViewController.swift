@@ -21,6 +21,7 @@ class MMBaseViewController: UIViewController {
     
     lazy var containerView: UIView = {
         let item = UIView()
+        item.backgroundColor = MMColors.color_bg_1
         return item
     }()
 

@@ -63,6 +63,13 @@ class MMPDFDetailViewController: MMBaseViewController {
         return item
     }()
     
+    lazy var settingBtn: UIButton = {
+        let item = UIButton(type: .custom)
+        item.setImage(UIImage(named: "ic_setting"), for: .normal)
+        item.addTarget(self, action: #selector(showSetting), for: .touchUpInside)
+        return item
+    }()
+    
     lazy var menuView: MMPDFOutlineView = {
         let item = MMPDFOutlineView()
         item.clickHandle = { [weak self] item in
@@ -223,11 +230,37 @@ extension MMPDFDetailViewController {
         popManager.show(view: menuView, popType: .left)
     }
     
+    @objc func showSetting() {
+        guard let window = application.delegate?.window else {
+            return
+        }
+        let dataArray = [MMCellItem(title: "指定跳转", handleAction: { [weak self] param in
+            guard let self = self else { return }
+            self.navigationController?.dismiss(animated: true, completion: nil)
+            self.showGotoAlert()
+        })]
+        let moreVC = MMMorePopViewController(dataArray: dataArray)
+        moreVC.preferredContentSize = CGSize(width: 100, height: 54)
+        moreVC.modalPresentationStyle = .popover
+
+        let popPC = moreVC.popoverPresentationController
+        popPC?.permittedArrowDirections = .up
+        popPC?.sourceView = naviBar
+        popPC?.sourceRect = settingBtn.superview?.convert(settingBtn.frame, to: window) ?? settingBtn.frame
+        popPC?.delegate = moreVC
+        navigationController?.present(moreVC, animated: true, completion: nil)
+    }
+    
     func setNaviBar() {
         naviBar.mm_addSubView(menuBtn)
         menuBtn.snp.makeConstraints { make in
             make.leading.equalTo(naviBar.backBtn.snp.trailing)
             make.top.size.equalTo(naviBar.backBtn)
+        }
+        naviBar.mm_addSubView(settingBtn)
+        settingBtn.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-vNormalSpacing)
+            make.top.size.equalTo(menuBtn)
         }
         
         if let title = document?.documentAttributes?[PDFDocumentAttribute.titleAttribute] as? String {
@@ -235,6 +268,30 @@ extension MMPDFDetailViewController {
         } else {
             naviBar.titleLabel.text = asset.name
         }
+    }
+}
+
+extension MMPDFDetailViewController {
+    func showGotoAlert() -> Void {
+        guard let doc = document else { return }
+        let message = String(format: "输入0-%d之间的页数", doc.pageCount)
+        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        alert.addTextField { field in
+            field.placeholder = "输入要跳转的页数"
+            field.keyboardType = .numberPad
+        }
+        let confirm = UIAlertAction(title: "确定", style: .default) { [weak alert, weak self] _ in
+            guard let inputText = alert?.textFields?.first?.text, !inputText.isEmpty else { return }
+            let inputV = inputText.intValue() - 1
+            if let page = self?.document?.page(at: inputV) {
+                self?.pdfView.go(to: page)
+            }
+        }
+        let cancel = UIAlertAction(title: "取消", style: .cancel) { _ in
+        }
+        alert.addAction(confirm)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
     }
 }
 
