@@ -24,6 +24,10 @@
 		B47FFDCC26C192CB00C7D179 /* MMAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47FFDCB26C192CB00C7D179 /* MMAsset.swift */; };
 		B47FFDCF26C1936500C7D179 /* MMAssetCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47FFDCD26C1936500C7D179 /* MMAssetCollectionCell.swift */; };
 		B47FFDD026C1936500C7D179 /* MMAssetCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B47FFDCE26C1936500C7D179 /* MMAssetCollectionCell.xib */; };
+		B4823DA426C908A8008CD73E /* UIButton+TransExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4823DA326C908A8008CD73E /* UIButton+TransExtension.swift */; };
+		B4823DA726C90FAC008CD73E /* MMMorePopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4823DA626C90FAC008CD73E /* MMMorePopViewController.swift */; };
+		B4823DAA26C91290008CD73E /* MMSingLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4823DA826C91290008CD73E /* MMSingLabelCell.swift */; };
+		B4823DAB26C91290008CD73E /* MMSingLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4823DA926C91290008CD73E /* MMSingLabelCell.xib */; };
 		B48AD52B26BEC6C9005AB054 /* MMPDFOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48AD52A26BEC6C9005AB054 /* MMPDFOutlineView.swift */; };
 		B48AD52E26BEC80D005AB054 /* MMOutlineItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48AD52C26BEC80D005AB054 /* MMOutlineItemCell.swift */; };
 		B48AD52F26BEC80D005AB054 /* MMOutlineItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B48AD52D26BEC80D005AB054 /* MMOutlineItemCell.xib */; };
@@ -60,6 +64,10 @@
 		B47FFDCB26C192CB00C7D179 /* MMAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMAsset.swift; sourceTree = "<group>"; };
 		B47FFDCD26C1936500C7D179 /* MMAssetCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMAssetCollectionCell.swift; sourceTree = "<group>"; };
 		B47FFDCE26C1936500C7D179 /* MMAssetCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MMAssetCollectionCell.xib; sourceTree = "<group>"; };
+		B4823DA326C908A8008CD73E /* UIButton+TransExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+TransExtension.swift"; sourceTree = "<group>"; };
+		B4823DA626C90FAC008CD73E /* MMMorePopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMMorePopViewController.swift; sourceTree = "<group>"; };
+		B4823DA826C91290008CD73E /* MMSingLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMSingLabelCell.swift; sourceTree = "<group>"; };
+		B4823DA926C91290008CD73E /* MMSingLabelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MMSingLabelCell.xib; sourceTree = "<group>"; };
 		B48AD52A26BEC6C9005AB054 /* MMPDFOutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMPDFOutlineView.swift; sourceTree = "<group>"; };
 		B48AD52C26BEC80D005AB054 /* MMOutlineItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMOutlineItemCell.swift; sourceTree = "<group>"; };
 		B48AD52D26BEC80D005AB054 /* MMOutlineItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MMOutlineItemCell.xib; sourceTree = "<group>"; };
@@ -155,6 +163,16 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
+		B4823DA526C90F8D008CD73E /* Sub */ = {
+			isa = PBXGroup;
+			children = (
+				B4823DA826C91290008CD73E /* MMSingLabelCell.swift */,
+				B4823DA926C91290008CD73E /* MMSingLabelCell.xib */,
+				B4823DA626C90FAC008CD73E /* MMMorePopViewController.swift */,
+			);
+			path = Sub;
+			sourceTree = "<group>";
+		};
 		B48AD53026BEC83E005AB054 /* Util */ = {
 			isa = PBXGroup;
 			children = (
@@ -171,6 +189,7 @@
 				B48AD53626BED787005AB054 /* UIKit+Extension.swift */,
 				B48AD53226BEC84F005AB054 /* UITableView+Extension.swift */,
 				B48AD53826BED7FE005AB054 /* UIViewController+Extension.swift */,
+				B4823DA326C908A8008CD73E /* UIButton+TransExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -191,6 +210,7 @@
 		B4992ED626BAFCC2004BFD4C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				B4823DA526C90F8D008CD73E /* Sub */,
 				B4992ED926BAFD3D004BFD4C /* MMHomeViewController.swift */,
 				B4992EDA26BAFD3D004BFD4C /* MMHomeViewController.xib */,
 				B47FFDCB26C192CB00C7D179 /* MMAsset.swift */,
@@ -268,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B41B8BEE26B6DD5500AC3BC0 /* MMPDFDetailViewController.xib in Resources */,
+				B4823DAB26C91290008CD73E /* MMSingLabelCell.xib in Resources */,
 				B4992ED526BAF78C004BFD4C /* MMThumbnailPageCell.xib in Resources */,
 				B41B8BD626B6A41A00AC3BC0 /* LaunchScreen.storyboard in Resources */,
 				B4992EDC26BAFD3D004BFD4C /* MMHomeViewController.xib in Resources */,
@@ -331,6 +352,7 @@
 				B48AD53926BED7FE005AB054 /* UIViewController+Extension.swift in Sources */,
 				B49E384726C7524400BD640B /* Date+MM_Extension.swift in Sources */,
 				B41B8BE226B6A49E00AC3BC0 /* MMBaseNavigationController.swift in Sources */,
+				B4823DA426C908A8008CD73E /* UIButton+TransExtension.swift in Sources */,
 				B4992EDB26BAFD3D004BFD4C /* MMHomeViewController.swift in Sources */,
 				B41B8BE726B6A85100AC3BC0 /* MMDefine.swift in Sources */,
 				B48AD52E26BEC80D005AB054 /* MMOutlineItemCell.swift in Sources */,
@@ -344,8 +366,10 @@
 				B41B8BCA26B6A41900AC3BC0 /* AppDelegate.swift in Sources */,
 				B47FFDCF26C1936500C7D179 /* MMAssetCollectionCell.swift in Sources */,
 				B48AD53526BED03F005AB054 /* MMPopManager.swift in Sources */,
+				B4823DAA26C91290008CD73E /* MMSingLabelCell.swift in Sources */,
 				B41B8BCC26B6A41900AC3BC0 /* SceneDelegate.swift in Sources */,
 				B4992ED426BAF78C004BFD4C /* MMThumbnailPageCell.swift in Sources */,
+				B4823DA726C90FAC008CD73E /* MMMorePopViewController.swift in Sources */,
 				B41B8BE926B6A9B100AC3BC0 /* MMHomeTabBarController.swift in Sources */,
 				B48AD53326BEC84F005AB054 /* UITableView+Extension.swift in Sources */,
 			);

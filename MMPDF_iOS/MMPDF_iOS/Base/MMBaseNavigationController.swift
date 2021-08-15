@@ -25,6 +25,14 @@ class MMBaseNavigationController: UINavigationController {
     override open var childForStatusBarStyle: UIViewController? {
         return self.topViewController
     }
+    
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        if viewControllers.count == 1 {
+            //viewController是将要被push的控制器
+            viewController.hidesBottomBarWhenPushed = true;
+        }
+        super.pushViewController(viewController, animated: animated)
+    }
 }
 
 extension MMBaseNavigationController: UIGestureRecognizerDelegate {

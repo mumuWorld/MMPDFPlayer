@@ -208,6 +208,10 @@ extension MMPDFDetailViewController {
             touchPoint = point
         case .changed:
             let change = point.x - touchPoint.x
+        case .ended:
+            mm_print("end")
+        case .cancelled:
+            mm_print("cancelled")
         default:
             break
         }

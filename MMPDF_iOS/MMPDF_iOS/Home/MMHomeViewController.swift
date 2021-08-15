@@ -31,16 +31,19 @@ class MMHomeViewController: MMBaseViewController {
     }()
     
     lazy var assetsArray: [MMAsset] = []
+    
+    lazy var addBtn: UIButton = {
+        let item = UIButton.create().image(UIImage(named: "ic_add"))
+        item.addTarget(self, action: #selector(handleClick(sender:)), for: .touchUpInside)
+        return item
+    }()
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        itemHeight = floor(itemWidth / 111 * 150)
-        naviBar.titleLabel.text = "本地文件"
-        naviBar.backBtn.isHidden = true
-//        containerView.isHidden = true
+        setNaviBar()
         containerView.addSubview(collectionView)
         containerView.backgroundColor = .lightGray
-        
+
         collectionView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
             make.top.equalTo(naviBar.snp.bottom)
@@ -69,10 +72,33 @@ class MMHomeViewController: MMBaseViewController {
         let float = String(format: "%.1f",  Float(10/3))
         mm_print(float)
     }
+}
 
+extension MMHomeViewController {
+    @objc func handleClick(sender: UIButton) {
+        guard let widow = application.delegate?.window else { return }
+        let moreVC = MMMorePopViewController()
+        moreVC.preferredContentSize = CGSize(width: 100, height: 54)
+        moreVC.modalPresentationStyle = .popover
 
-    @IBAction func handleClick(_ sender: UIButton) {
-//        navigationController?.pushViewController(MMPDFDetailViewController(), animated: true)
+        let popPC = moreVC.popoverPresentationController
+        popPC?.permittedArrowDirections = .up
+        popPC?.sourceView = sender
+        popPC?.sourceRect = sender.frame
+        popPC?.delegate = moreVC
+        present(moreVC, animated: true, completion: nil)
+    }
+    
+    func setNaviBar() -> Void {
+        itemHeight = floor(itemWidth / 111 * 150)
+        naviBar.titleLabel.text = "本地文件"
+        naviBar.backBtn.isHidden = true
+        naviBar.mm_addSubView(addBtn)
+        addBtn.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(8)
+            make.centerY.height.equalToSuperview()
+            make.width.equalTo(30)
+        }
     }
 }
 
