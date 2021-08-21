@@ -37,6 +37,10 @@ class MMHomeViewController: MMBaseViewController {
         item.addTarget(self, action: #selector(handleClick(sender:)), for: .touchUpInside)
         return item
     }()
+    
+    lazy var rootPath: String = {
+        return NSSearchPathForDirectoriesInDomains(.documentDirectory, .allDomainsMask, true).first ?? ""
+    }()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,14 +51,19 @@ class MMHomeViewController: MMBaseViewController {
             make.leading.trailing.bottom.equalToSuperview()
             make.top.equalTo(naviBar.snp.bottom)
         }
-        guard let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .allDomainsMask, true).first else {
-            return
-        }
-        mm_print(path)
+        loadFile()
+    }
+}
+
+extension MMHomeViewController {
+    
+    func loadFile() -> Void {
+        mm_print(rootPath)
         // file:///var/mobile/Containers/Data/Application/C7596598-A4E8-4F5E-A3CB-089B2EE2D092/Documents/
-        let fileUrl = URL(fileURLWithPath: path)
+        let fileUrl = URL(fileURLWithPath: rootPath)
         // /var/mobile/Containers/Data/Application/C7596598-A4E8-4F5E-A3CB-089B2EE2D092/Documents
 //        let url = URL(string: path)
+        assetsArray.removeAll()
         do {
             let documents = try FileManager.default.contentsOfDirectory(at: fileUrl, includingPropertiesForKeys: [], options: .skipsSubdirectoryDescendants)
             
@@ -68,13 +77,18 @@ class MMHomeViewController: MMBaseViewController {
             mm_print(e)
         }
     }
-}
-
-extension MMHomeViewController {
+    
+    func handleChooseFileFromLocal() -> Void {
+        let docVC = UIDocumentPickerViewController(documentTypes: ["com.adobe.pdf"], in: .import)
+//        let docVC2 = UIDocumentPickerViewController(forOpeningContentTypes: [.pdf], asCopy: true)
+        docVC.delegate = self
+        navigationController?.present(docVC, animated: true, completion: nil)
+    }
+    
     @objc func handleClick(sender: UIButton) {
 //        guard let widow = application.delegate?.window else { return }
-        let dataArray = [MMCellItem(title: "从本地添加", handleAction: { param in
-            
+        let dataArray = [MMCellItem(title: "从本地添加", handleAction: { [weak self] param in
+            self?.handleChooseFileFromLocal()
         })]
         let moreVC = MMMorePopViewController(dataArray: dataArray)
         moreVC.preferredContentSize = CGSize(width: 100, height: 54)
@@ -98,6 +112,26 @@ extension MMHomeViewController {
             make.centerY.height.equalToSuperview()
             make.width.equalTo(30)
         }
+    }
+}
+
+extension MMHomeViewController: UIDocumentPickerDelegate {
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        mm_print("选择完成->\(urls)")
+        var count = 0
+        //将文件导入到 document
+        for url in urls {
+            let purposePath = rootPath.appendPathComponent(string: url.lastPathComponent)
+            let purposeUrl = URL(fileURLWithPath: purposePath)
+            do {
+                try FileManager.default.moveItem(at: url, to: purposeUrl)
+                count += 1
+            } catch let e {
+                mm_print(e)
+            }
+        }
+        MMToastView.show(message: "\(count)个文件导入完成")
+        loadFile()
     }
 }
 

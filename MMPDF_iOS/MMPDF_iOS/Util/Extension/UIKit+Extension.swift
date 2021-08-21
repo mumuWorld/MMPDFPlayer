@@ -109,6 +109,35 @@ extension UIView {
         layer.cornerRadius = radius
         layer.masksToBounds = true
     }
+    
+    func checkSubViewRemove(checkViewStr: String) -> Void {
+        if self.subviews.count < 1 {
+            return
+        }
+        for subView in self.subviews {
+            let str = String(describing: type(of: subView))
+            if str == checkViewStr {
+                subView.removeFromSuperview()
+                break
+            }
+        }
+    }
 }
 
-
+extension UILabel {
+    class func labelWith(title: String?, titleColor: UIColor?, font: UIFont?, alignment: NSTextAlignment = NSTextAlignment.left) -> UILabel {
+        let label = UILabel(frame: CGRect.zero)
+        if let titleT = title {
+            label.text = titleT
+        }
+        if let colorT = titleColor {
+            label.textColor = colorT
+        }
+        if let fontT = font {
+            label.font = fontT
+        }
+        label.textAlignment = alignment
+        label.sizeToFit()
+        return label
+    }
+}

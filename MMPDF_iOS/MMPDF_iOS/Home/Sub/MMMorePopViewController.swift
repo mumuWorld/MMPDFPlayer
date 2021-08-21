@@ -51,6 +51,7 @@ class MMMorePopViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         let item = _dataArray[indexPath.row]
         if let handle = item.handleAction {
+            dismiss(animated: true, completion: nil)
             handle(item)
         }
     }

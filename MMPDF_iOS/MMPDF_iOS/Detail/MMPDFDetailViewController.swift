@@ -276,7 +276,6 @@ extension MMPDFDetailViewController {
         }
         let dataArray = [MMCellItem(title: "指定跳转", handleAction: { [weak self] param in
             guard let self = self else { return }
-            self.navigationController?.dismiss(animated: true, completion: nil)
             self.showGotoAlert()
         })]
         let moreVC = MMMorePopViewController(dataArray: dataArray)

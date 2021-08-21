@@ -24,6 +24,7 @@
 		B426EE2126D0F9D100327D23 /* MMCurPageThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B426EE2026D0F9D100327D23 /* MMCurPageThumbnailView.swift */; };
 		B426EE2326D0F9E700327D23 /* MMDetailSubViews.xib in Resources */ = {isa = PBXBuildFile; fileRef = B426EE2226D0F9E700327D23 /* MMDetailSubViews.xib */; };
 		B426EE2526D1444800327D23 /* MMCurPageThumbnailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B426EE2426D1444800327D23 /* MMCurPageThumbnailView.xib */; };
+		B426EE2826D15BA100327D23 /* MMToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B426EE2726D15BA100327D23 /* MMToastView.swift */; };
 		B47FFDCC26C192CB00C7D179 /* MMAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47FFDCB26C192CB00C7D179 /* MMAsset.swift */; };
 		B47FFDCF26C1936500C7D179 /* MMAssetCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47FFDCD26C1936500C7D179 /* MMAssetCollectionCell.swift */; };
 		B47FFDD026C1936500C7D179 /* MMAssetCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B47FFDCE26C1936500C7D179 /* MMAssetCollectionCell.xib */; };
@@ -73,6 +74,7 @@
 		B426EE2026D0F9D100327D23 /* MMCurPageThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMCurPageThumbnailView.swift; sourceTree = "<group>"; };
 		B426EE2226D0F9E700327D23 /* MMDetailSubViews.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MMDetailSubViews.xib; sourceTree = "<group>"; };
 		B426EE2426D1444800327D23 /* MMCurPageThumbnailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MMCurPageThumbnailView.xib; sourceTree = "<group>"; };
+		B426EE2726D15BA100327D23 /* MMToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MMToastView.swift; sourceTree = "<group>"; };
 		B47FFDCB26C192CB00C7D179 /* MMAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMAsset.swift; sourceTree = "<group>"; };
 		B47FFDCD26C1936500C7D179 /* MMAssetCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMAssetCollectionCell.swift; sourceTree = "<group>"; };
 		B47FFDCE26C1936500C7D179 /* MMAssetCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MMAssetCollectionCell.xib; sourceTree = "<group>"; };
@@ -182,6 +184,14 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
+		B426EE2626D15B9A00327D23 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B426EE2726D15BA100327D23 /* MMToastView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		B4823DA526C90F8D008CD73E /* Sub */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +214,7 @@
 		B48AD53026BEC83E005AB054 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				B426EE2626D15B9A00327D23 /* Views */,
 				B48AD53126BEC847005AB054 /* Extension */,
 				B48AD53426BED03F005AB054 /* MMPopManager.swift */,
 				B4823DB426C9647F008CD73E /* MMColors.swift */,
@@ -414,6 +425,7 @@
 				B4992ED426BAF78C004BFD4C /* MMThumbnailPageCell.swift in Sources */,
 				B4823DA726C90FAC008CD73E /* MMMorePopViewController.swift in Sources */,
 				B49F0C5926CD5D7600D8810B /* DispatchTime+MM_Extension.swift in Sources */,
+				B426EE2826D15BA100327D23 /* MMToastView.swift in Sources */,
 				B41B8BE926B6A9B100AC3BC0 /* MMHomeTabBarController.swift in Sources */,
 				B48AD53326BEC84F005AB054 /* UITableView+Extension.swift in Sources */,
 			);

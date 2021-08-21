@@ -18,6 +18,10 @@ class MMCustomNaviBar: UIView {
     
     var handleDismiss: (() -> Void)?
     
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        backgroundColor = MMColors.color_nav_1
+    }
 
     @IBAction func handleClick(_ sender: UIButton) {
         handleDismiss?()

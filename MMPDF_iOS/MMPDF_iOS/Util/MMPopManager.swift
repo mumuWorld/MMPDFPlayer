@@ -37,6 +37,11 @@ class MMPopManager {
     
     private var dismissAniBlock: (() -> Void)?
 
+    var curShowView: MMPopProtocol? {
+        didSet {
+            curShowView?.isHidden = false
+        }
+    }
     
     @objc func maskTap(sender: UITapGestureRecognizer) {
         dissmiss()
@@ -52,6 +57,7 @@ extension MMPopManager {
         vc.view.addSubview(maskView)
         maskView.alpha = 0
         
+        curShowView = view
         popContainerView.addSubview(view)
         handlePopType(popType: popType, supView: vc.view)
         view.mm_size = popContainerView.mm_size
@@ -62,7 +68,6 @@ extension MMPopManager {
             self.maskView.alpha = 1
             self.showAniBlock?()
         } completion: { _ in
-            
         }
     }
     
@@ -87,7 +92,7 @@ extension MMPopManager {
             self.maskView.alpha = 0
             self.dismissAniBlock?()
         } completion: { _ in
-            
+            self.curShowView?.isHidden = true
         }
     }
 }

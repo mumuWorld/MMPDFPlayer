@@ -16,4 +16,8 @@ class MMColor: NSObject {
     var color_bg_1: UIColor? = UIColor(named: "color_bg_1")
     
     var color_bg_2: UIColor? = UIColor(named: "color_bg_2")
+    
+    var color_nav_1: UIColor? = UIColor(named: "color_nav_1")
+
+    
 }
