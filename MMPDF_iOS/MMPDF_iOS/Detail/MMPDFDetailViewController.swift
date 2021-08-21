@@ -11,6 +11,10 @@ import PDFKit
 
 class MMPDFDetailViewController: MMBaseViewController {
     
+    enum ViewType {
+        case normal, fullText
+    }
+    
     let asset: MMAsset
     
     lazy var bottomToolView: UIView = {
@@ -90,6 +94,41 @@ class MMPDFDetailViewController: MMBaseViewController {
         return item
     }()
     
+    lazy var touchView: MMThroughTouchView = {
+        let item = MMThroughTouchView()
+        item.touchHandle = { [weak self] point in
+            mm_print("点击->\(point)")
+            guard let self = self else { return }
+            self.viewtype = self.viewtype == .normal ? .fullText : .normal
+        }
+        item.backgroundColor = UIColor(white: 0, alpha: 0.01)
+        return item
+    }()
+    
+    var viewtype: ViewType = .normal {
+        didSet {
+            let naviOffset: CGFloat
+            let bottomOffset: CGFloat
+            if viewtype == .normal {
+                naviOffset = 0
+                bottomOffset = 0
+                pageCountView.isHidden = false
+            } else {
+                naviOffset = -kNavigationBarHeight
+                bottomOffset = thumbnailHeight + kBottomSafeSpacing
+                pageCountView.isHidden = true
+            }
+            UIView.animate(withDuration: 0.2) {
+                self.naviBar.snp.updateConstraints { make in
+                    make.top.equalToSuperview().offset(naviOffset)
+                }
+                self.bottomToolView.snp.updateConstraints { make in
+                    make.bottom.equalToSuperview().offset(bottomOffset)
+                }
+            }
+        }
+    }
+    
     var pageCount = 0
     
     var thumbnailWidth: CGFloat = 0
@@ -114,53 +153,9 @@ class MMPDFDetailViewController: MMBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        containerView.backgroundColor = .red
+        containerView.backgroundColor = MMColors.color_bg_1
         setNaviBar()
-        
-        pdfView.frame = CGRect(x: 0, y: kNavigationBarHeight, width: kScreenWidth, height: kScreenHeigh - kNavigationBarHeight - thumbnailHeight)
-        containerView.addSubview(pdfView)
-        pdfView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
-            make.top.equalTo(naviBar.snp.bottom)
-            make.bottom.equalToSuperview().offset(-thumbnailHeight)
-        }
-        pdfView.document = document
-        
-        //创建略缩图
-        bottomToolView.addSubview(thumbnailView)
-        containerView.addSubview(bottomToolView)
-        bottomToolView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.height.equalTo(thumbnailHeight + kBottomSafeSpacing)
-        }
-        thumbnailView.snp.makeConstraints { make in
-            make.leading.trailing.top.equalToSuperview()
-            make.height.equalTo(thumbnailHeight)
-        }
-        //页数指示器
-        containerView.addSubview(pageCountView)
-        pageCountView.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().offset(-20)
-            make.top.equalTo(naviBar.snp.bottom).offset(20)
-        }
-        pageCountView.count = document?.pageCount ?? 0
-        pageCountView.curPage = 1
-        //隐藏滚动条
-        if let pdfScrollView = pdfView.subviews.first?.subviews.first as? UIScrollView {
-            pdfScrollView.showsHorizontalScrollIndicator = false
-            pdfScrollView.showsVerticalScrollIndicator = false
-        }
-        
-        registreNotify()
-        
-        thumbnailView.isUserInteractionEnabled = pageCount > 10
-        if document?.pageCount ?? 0 > 10 {
-            bottomToolView.addSubview(thumnailTouchView)
-            thumnailTouchView.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
-            }
-        }
+        setupSubviews()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -181,10 +176,6 @@ class MMPDFDetailViewController: MMBaseViewController {
         let page = max(pdfView.currentPage?.pageRef?.pageNumber ?? 1, 1) - 1
         UserDefaults.standard.set(page, forKey: asset.name)
     }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        mm_print("")
-    }
         
     /// 创建大纲
     @discardableResult
@@ -200,6 +191,10 @@ class MMPDFDetailViewController: MMBaseViewController {
             }
         }
         return items
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     var touchPoint: CGPoint = .zero
@@ -272,6 +267,13 @@ extension MMPDFDetailViewController {
 }
 
 extension MMPDFDetailViewController {
+
+    
+    @objc func handleGesture(sender: UIGestureRecognizer) {
+        mm_print("handle")
+        viewtype = viewtype == .fullText ? .normal : .fullText
+    }
+    
     func showGotoAlert() -> Void {
         guard let doc = document else { return }
         let message = String(format: "输入0-%d之间的页数", doc.pageCount)
@@ -343,14 +345,14 @@ extension MMPDFDetailViewController: UICollectionViewDelegate, UICollectionViewD
 extension MMPDFDetailViewController {
     
     @objc func handleNotify(sender: Notification) {
-        let page = max(pdfView.currentPage?.pageRef?.pageNumber ?? 1, 1) - 1
-        UserDefaults.standard.set(page, forKey: asset.name)
+        mm_print(sender.name);
     }
     
     @objc func handlePageChange(sender: Notification) {
         let page = max(pdfView.currentPage?.pageRef?.pageNumber ?? 1, 1)
         mm_print("当前page=\(page)")
         pageCountView.curPage = page
+        UserDefaults.standard.set(page - 1, forKey: asset.name)
     }
     
     @objc func handlePageClick(sender: Notification) {
@@ -360,12 +362,61 @@ extension MMPDFDetailViewController {
     }
     
     func registreNotify() -> Void {
-        NotificationCenter.default.addObserver(self, selector: #selector(handleNotify(sender:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
         //page改变
         NotificationCenter.default.addObserver(self, selector: #selector(handlePageChange(sender:)), name: NSNotification.Name.PDFViewPageChanged, object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(handlePageClick(sender:)), name: NSNotification.Name.PDFViewAnnotationHit, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handlePageClick(sender:)), name: NSNotification.Name.PDFViewAnnotationWillHit, object: nil)
-
+//        NotificationCenter.default.addObserver(self, selector: #selector(handleNotify(sender:)), name: UIApplication.willResignActiveNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(handleNotify(sender:)), name: UIApplication.didBecomeActiveNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(handleNotify(sender:)), name: UIApplication.willEnterForegroundNotification, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(handleNotify(sender:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
+    }
+    
+    func setupSubviews() -> Void {
+        pdfView.frame = CGRect(x: 0, y: kNavigationBarHeight, width: kScreenWidth, height: kScreenHeigh - kNavigationBarHeight - thumbnailHeight)
+        containerView.addSubview(pdfView)
+        pdfView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-kBottomSafeSpacing)
+        }
+        pdfView.document = document
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleGesture(sender:)))
+        pdfView.addGestureRecognizer(tap)
+        
+        //创建略缩图
+        bottomToolView.addSubview(thumbnailView)
+        containerView.addSubview(bottomToolView)
+        bottomToolView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalToSuperview().offset(0)
+            make.height.equalTo(thumbnailHeight + kBottomSafeSpacing)
+        }
+        thumbnailView.snp.makeConstraints { make in
+            make.leading.trailing.top.equalToSuperview()
+            make.height.equalTo(thumbnailHeight)
+        }
+        //页数指示器
+        containerView.addSubview(pageCountView)
+        pageCountView.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-20)
+            make.top.equalTo(naviBar.snp.bottom).offset(20)
+        }
+        pageCountView.count = document?.pageCount ?? 0
+        pageCountView.curPage = 1
+        //隐藏滚动条
+        if let pdfScrollView = pdfView.subviews.first?.subviews.first as? UIScrollView {
+            pdfScrollView.showsHorizontalScrollIndicator = false
+            pdfScrollView.showsVerticalScrollIndicator = false
+        }
+        
+        registreNotify()
+        
+        thumbnailView.isUserInteractionEnabled = pageCount > 10
+        if document?.pageCount ?? 0 > 10 {
+            bottomToolView.addSubview(thumnailTouchView)
+            thumnailTouchView.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+        }
     }
 }

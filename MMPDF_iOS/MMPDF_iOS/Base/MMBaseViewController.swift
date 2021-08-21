@@ -33,7 +33,8 @@ class MMBaseViewController: UIViewController {
             make.edges.equalToSuperview()
         }
         naviBar.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
+            make.top.equalToSuperview().offset(0)
+            make.leading.trailing.equalToSuperview()
             make.height.equalTo(kNavigationBarHeight)
         }
         naviBar.isHidden = isHideNavibar

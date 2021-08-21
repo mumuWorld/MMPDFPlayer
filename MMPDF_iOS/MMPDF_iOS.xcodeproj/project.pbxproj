@@ -45,6 +45,8 @@
 		B4992EDC26BAFD3D004BFD4C /* MMHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4992EDA26BAFD3D004BFD4C /* MMHomeViewController.xib */; };
 		B49E384726C7524400BD640B /* Date+MM_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49E384626C7524400BD640B /* Date+MM_Extension.swift */; };
 		B49E384926C7C81800BD640B /* MMDetailPageCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49E384826C7C81800BD640B /* MMDetailPageCountView.swift */; };
+		B49F0C5626CD56AE00D8810B /* MMThroughTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49F0C5526CD56AE00D8810B /* MMThroughTouchView.swift */; };
+		B49F0C5926CD5D7600D8810B /* DispatchTime+MM_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49F0C5826CD5D7600D8810B /* DispatchTime+MM_Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +91,8 @@
 		B4992EDA26BAFD3D004BFD4C /* MMHomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MMHomeViewController.xib; sourceTree = "<group>"; };
 		B49E384626C7524400BD640B /* Date+MM_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+MM_Extension.swift"; sourceTree = "<group>"; };
 		B49E384826C7C81800BD640B /* MMDetailPageCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMDetailPageCountView.swift; sourceTree = "<group>"; };
+		B49F0C5526CD56AE00D8810B /* MMThroughTouchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMThroughTouchView.swift; sourceTree = "<group>"; };
+		B49F0C5826CD5D7600D8810B /* DispatchTime+MM_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DispatchTime+MM_Extension.swift"; sourceTree = "<group>"; };
 		E9532F7AE5F0CA8A2D363035 /* Pods-MMPDF_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MMPDF_iOS.release.xcconfig"; path = "Target Support Files/Pods-MMPDF_iOS/Pods-MMPDF_iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -204,6 +208,7 @@
 		B48AD53126BEC847005AB054 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				B49F0C5826CD5D7600D8810B /* DispatchTime+MM_Extension.swift */,
 				B4823DB226C95E19008CD73E /* String+Extension.swift */,
 				B49E384626C7524400BD640B /* Date+MM_Extension.swift */,
 				B48AD53626BED787005AB054 /* UIKit+Extension.swift */,
@@ -223,6 +228,7 @@
 				B48AD52C26BEC80D005AB054 /* MMOutlineItemCell.swift */,
 				B48AD52D26BEC80D005AB054 /* MMOutlineItemCell.xib */,
 				B49E384826C7C81800BD640B /* MMDetailPageCountView.swift */,
+				B49F0C5526CD56AE00D8810B /* MMThroughTouchView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -389,11 +395,13 @@
 				B41B8BED26B6DD5500AC3BC0 /* MMPDFDetailViewController.swift in Sources */,
 				B41B8BCA26B6A41900AC3BC0 /* AppDelegate.swift in Sources */,
 				B47FFDCF26C1936500C7D179 /* MMAssetCollectionCell.swift in Sources */,
+				B49F0C5626CD56AE00D8810B /* MMThroughTouchView.swift in Sources */,
 				B48AD53526BED03F005AB054 /* MMPopManager.swift in Sources */,
 				B4823DAA26C91290008CD73E /* MMSingLabelCell.swift in Sources */,
 				B41B8BCC26B6A41900AC3BC0 /* SceneDelegate.swift in Sources */,
 				B4992ED426BAF78C004BFD4C /* MMThumbnailPageCell.swift in Sources */,
 				B4823DA726C90FAC008CD73E /* MMMorePopViewController.swift in Sources */,
+				B49F0C5926CD5D7600D8810B /* DispatchTime+MM_Extension.swift in Sources */,
 				B41B8BE926B6A9B100AC3BC0 /* MMHomeTabBarController.swift in Sources */,
 				B48AD53326BEC84F005AB054 /* UITableView+Extension.swift in Sources */,
 			);
