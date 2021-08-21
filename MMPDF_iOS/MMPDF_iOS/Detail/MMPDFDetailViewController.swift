@@ -7,7 +7,7 @@
 
 import UIKit
 import PDFKit
-
+import SnapKit
 
 class MMPDFDetailViewController: MMBaseViewController {
     
@@ -29,8 +29,6 @@ class MMPDFDetailViewController: MMBaseViewController {
         let item = PDFView()
         item.displayMode = .singlePage
         item.displayDirection = .horizontal
-//        item.canGoBack = true
-//        item.canGoForward = true
         item.displaysAsBook = false
         item.delegate = self
         item.autoScales = true
@@ -39,6 +37,7 @@ class MMPDFDetailViewController: MMBaseViewController {
         return item
     }()
     
+    /// 底部略缩图
     lazy var thumbnailView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: thumbnailWidth, height: thumbnailHeight)
@@ -55,8 +54,46 @@ class MMPDFDetailViewController: MMBaseViewController {
     lazy var thumnailTouchView: UIView = {
         let item = UIView()
         item.backgroundColor = UIColor(white: 0, alpha: 0.01)
-        let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePan(sender:)))
+        let pan = UITapGestureRecognizer(target: self, action: #selector(handleTap(sender:)))
         item.addGestureRecognizer(pan)
+        item.addSubview(curPageView)
+        curPageView.frame = CGRect(x: 0, y: 0, width: thumbnailWidth, height: thumbnailHeight)
+        return item
+    }()
+    
+    var touchPage: Int = 0
+    var isTouchCancel: Bool = false {
+        didSet {
+            self.curPreviewPageView.tipType = isTouchCancel ? 1 : 0
+        }
+    }
+    ///滑动跳转交互视图
+    lazy var curPageView: MMCurPageThumbnailView = {
+        let item = UINib.init(nibName: "MMCurPageThumbnailView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! MMCurPageThumbnailView
+        item.alpha = 0.8
+        item.touchChange = { [weak self] change, showCancel in
+            guard let self = self else { return }
+            self.handlePanChange(change: change, isShowCancel: showCancel)
+        }
+        item.touchBegin = { [weak self] in
+            guard let self = self else { return }
+            self.curPreviewPageView.isHidden = false
+        }
+        item.touchEnd = { [weak self] in
+            guard let self = self else { return }
+            self.curPreviewPageView.isHidden = true
+            mm_print("是否取消->\(self.isTouchCancel)")
+            guard !self.isTouchCancel else { return }
+            mm_print("跳转->\(self.touchPage)")
+            self.gotoPage(pageNumber: self.touchPage)
+        }
+        return item
+    }()
+    /// 预览跳转试图
+    lazy var curPreviewPageView: MMCurPageThumbnailTipView = {
+        let item = UINib.init(nibName: "MMDetailSubViews", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! MMCurPageThumbnailTipView
+        item.backgroundColor = MMColors.color_bg_1?.withAlphaComponent(0.4)
+        item.isHidden = true
         return item
     }()
     
@@ -94,17 +131,6 @@ class MMPDFDetailViewController: MMBaseViewController {
         return item
     }()
     
-    lazy var touchView: MMThroughTouchView = {
-        let item = MMThroughTouchView()
-        item.touchHandle = { [weak self] point in
-            mm_print("点击->\(point)")
-            guard let self = self else { return }
-            self.viewtype = self.viewtype == .normal ? .fullText : .normal
-        }
-        item.backgroundColor = UIColor(white: 0, alpha: 0.01)
-        return item
-    }()
-    
     var viewtype: ViewType = .normal {
         didSet {
             let naviOffset: CGFloat
@@ -128,12 +154,24 @@ class MMPDFDetailViewController: MMBaseViewController {
             }
         }
     }
-    
-    var pageCount = 0
-    
+        
     var thumbnailWidth: CGFloat = 0
     
     var thumbnailHeight: CGFloat = 0
+    
+    var touchPoint: CGPoint = .zero
+    
+    var pageCount: Int {
+        get {
+            document?.pageCount ?? 0
+        }
+    }
+    
+    var curPage: Int {
+        get {
+            return pdfView.currentPage?.pageRef?.pageNumber ?? 1
+        }
+    }
 
     init(asset: MMAsset) {
         self.asset = asset
@@ -142,7 +180,6 @@ class MMPDFDetailViewController: MMBaseViewController {
             return
         }
         document = PDFDocument(url: url)
-        pageCount = min(10, document?.pageCount ?? 0)
         thumbnailWidth = floor((kScreenWidth - vNormalSpacing * 2 - 9 * 2) / 10)
         thumbnailHeight = floor(thumbnailWidth * 1.2)
     }
@@ -151,20 +188,27 @@ class MMPDFDetailViewController: MMBaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    var perPageDistance: CGFloat = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         containerView.backgroundColor = MMColors.color_bg_1
         setNaviBar()
         setupSubviews()
+        let distance = kScreenWidth - thumbnailWidth
+        perPageDistance = distance / CGFloat(pageCount)
+        let pageNumber = UserDefaults.standard.integer(forKey: asset.name)
+        if pageNumber > 0, let pdfPage = document?.page(at: pageNumber) {
+            pdfView.go(to: pdfPage)
+        } else {
+            //处理不跳转时候的图片
+            gotoPage(pageNumber: 1)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let pageNumber = UserDefaults.standard.integer(forKey: asset.name)
-        if pageNumber > 0, let pdfPage = document?.page(at: pageNumber) {
-            pdfView.go(to: pdfPage)
-            pageCountView.curPage = pageNumber + 1
-        }
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -175,6 +219,10 @@ class MMPDFDetailViewController: MMBaseViewController {
         super.viewDidDisappear(animated)
         let page = max(pdfView.currentPage?.pageRef?.pageNumber ?? 1, 1) - 1
         UserDefaults.standard.set(page, forKey: asset.name)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
     }
         
     /// 创建大纲
@@ -196,28 +244,25 @@ class MMPDFDetailViewController: MMBaseViewController {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-    
-    var touchPoint: CGPoint = .zero
-    
 }
 
 extension MMPDFDetailViewController {
     
-    @objc func handlePan(sender: UIPanGestureRecognizer) {
+    func handlePanChange(change: CGFloat, isShowCancel: Bool) -> Void {
+        self.isTouchCancel = isShowCancel
+        let curX = self.curPageView.mm_x + change
+        self.curPageView.mm_x = curX
+        let curPage = Int(curX / self.perPageDistance)
+        self.touchPage = curPage
+        self.handleCurPageOffset(page: curPage)
+    }
+    
+    @objc func handleTap(sender: UITapGestureRecognizer) {
         let point = sender.location(in: thumnailTouchView)
-        switch sender.state {
-        case .began:
-            touchPoint = point
-        case .changed:
-            let change = point.x - touchPoint.x
-        case .ended:
-            mm_print("end")
-        case .cancelled:
-            mm_print("cancelled")
-        default:
-            break
-        }
-        mm_print(point)
+        let curPage = max(Int(point.x / self.perPageDistance), 1)
+        gotoPage(pageNumber: curPage)
+        handleCurPageOffset(page: curPage)
+        curPageView.mm_x = CGFloat(curPage) * perPageDistance
     }
     
     @objc func showMenu() {
@@ -267,10 +312,31 @@ extension MMPDFDetailViewController {
 }
 
 extension MMPDFDetailViewController {
-
+    
+    func handleCurPageOffset(page: Int) -> Void {
+        guard let pageView = document?.page(at: page - 1) else { return }
+        if !curPreviewPageView.isHidden {
+            let thum = pageView.thumbnail(of: curPreviewPageView.thumView.thunbnailImgView.mm_size, for: .artBox)
+            curPreviewPageView.thumView.thunbnailImgView.image = thum
+            curPreviewPageView.countLabel.text = String(format: "跳转页数 %d", page)
+        }
+        let thum = pageView.thumbnail(of: CGSize(width: thumbnailWidth - 8, height: thumbnailHeight - 8), for: .artBox)
+        curPageView.thunbnailImgView.image = thum
+    }
+    
+    func gotoPage(pageNumber: Int) -> Void {
+        let page = min(max(pageNumber, 1), pageCount)
+        mm_print("当前page=\(page)")
+        pageCountView.curPage = page
+        let savePage = page - 1
+        if let pageView = document?.page(at: savePage) {
+            pdfView.go(to: pageView)
+        }
+        UserDefaults.standard.set(savePage, forKey: asset.name)
+    }
     
     @objc func handleGesture(sender: UIGestureRecognizer) {
-        mm_print("handle")
+        mm_print("切换模式")
         viewtype = viewtype == .fullText ? .normal : .fullText
     }
     
@@ -320,45 +386,22 @@ extension MMPDFDetailViewController : PDFViewDelegate {
     }
 }
 
-extension MMPDFDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        pageCount
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MMThumbnailPageCell", for: indexPath) as! MMThumbnailPageCell
-        if let page = document?.page(at: indexPath.row) {
-            let size = CGSize(width: thumbnailWidth, height: thumbnailHeight)
-            let thum = page.thumbnail(of: size, for: .artBox)
-            cell.thumbnailImgView.image = thum
-        }
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let page = document?.page(at: indexPath.row) {
-            pdfView.go(to: page)
-        }
-    }
-}
-
 extension MMPDFDetailViewController {
     
     @objc func handleNotify(sender: Notification) {
-        mm_print(sender.name);
+        mm_print(sender.name)
     }
     
     @objc func handlePageChange(sender: Notification) {
         let page = max(pdfView.currentPage?.pageRef?.pageNumber ?? 1, 1)
-        mm_print("当前page=\(page)")
-        pageCountView.curPage = page
-        UserDefaults.standard.set(page - 1, forKey: asset.name)
+        gotoPage(pageNumber: page)
+        handleCurPageOffset(page: page)
     }
     
     @objc func handlePageClick(sender: Notification) {
-        let page = max(pdfView.currentPage?.pageRef?.pageNumber ?? 1, 1)
-        mm_print("当前2page=\(page)")
-        pageCountView.curPage = page
+//        let page = max(pdfView.currentPage?.pageRef?.pageNumber ?? 1, 1)
+        mm_print("PDFViewAnnotationHit")
+//        pageCountView.curPage = page
     }
     
     func registreNotify() -> Void {
@@ -403,6 +446,13 @@ extension MMPDFDetailViewController {
         }
         pageCountView.count = document?.pageCount ?? 0
         pageCountView.curPage = 1
+        //滚动提示
+        containerView.addSubview(curPreviewPageView)
+        curPreviewPageView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.center.equalToSuperview()
+            make.height.equalTo((kScreenWidth - 40) * 1.2)
+        }
         //隐藏滚动条
         if let pdfScrollView = pdfView.subviews.first?.subviews.first as? UIScrollView {
             pdfScrollView.showsHorizontalScrollIndicator = false
@@ -417,6 +467,32 @@ extension MMPDFDetailViewController {
             thumnailTouchView.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
             }
+            handleCurPageOffset(page: curPage)
+            DispatchQueue.main.async {
+                self.curPageView.frame = CGRect(x: CGFloat(self.curPage) * self.perPageDistance, y: 0, width: self.thumbnailWidth, height: self.thumbnailHeight)
+            }
+        }
+    }
+}
+
+extension MMPDFDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        pageCount
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MMThumbnailPageCell", for: indexPath) as! MMThumbnailPageCell
+        if let page = document?.page(at: indexPath.row) {
+            let size = CGSize(width: thumbnailWidth, height: thumbnailHeight)
+            let thum = page.thumbnail(of: size, for: .artBox)
+            cell.thumbnailImgView.image = thum
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let page = document?.page(at: indexPath.row) {
+            pdfView.go(to: page)
         }
     }
 }
