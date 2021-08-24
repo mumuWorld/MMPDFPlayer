@@ -204,6 +204,18 @@ class MMPDFDetailViewController: MMBaseViewController {
             //处理不跳转时候的图片
             gotoPage(pageNumber: 1)
         }
+//        let thumbnail = PDFThumbnailView(frame: CGRect(x: 0, y: 100, width: kScreenWidth, height: thumbnailHeight))
+//        thumbnail.pdfView = pdfView
+//        thumbnail.layoutMode = .horizontal
+//        containerView.addSubview(thumbnail)
+        let line = PDFAnnotation(bounds: CGRect(x: 100, y: 100, width: 200, height: 200), forType: .line, withProperties: nil)
+        line.setValue([0, 0, 100, 100], forAnnotationKey: .linePoints)
+        line.setValue(["Closed", "Open"], forAnnotationKey: .lineEndingStyles)
+        line.setValue(UIColor.red, forAnnotationKey: .color)
+        if let page = document?.page(at: 1) {
+            page.addAnnotation(line)
+        }
+        pdfView.document = document
     }
     
     override func viewDidAppear(_ animated: Bool) {
