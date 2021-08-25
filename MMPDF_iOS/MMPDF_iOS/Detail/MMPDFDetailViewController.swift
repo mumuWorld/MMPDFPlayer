@@ -70,7 +70,7 @@ class MMPDFDetailViewController: MMBaseViewController {
     ///滑动跳转交互视图
     lazy var curPageView: MMCurPageThumbnailView = {
         let item = UINib.init(nibName: "MMCurPageThumbnailView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! MMCurPageThumbnailView
-        item.alpha = 0.8
+        item.alpha = 0.9
         item.touchChange = { [weak self] change, showCancel in
             guard let self = self else { return }
             self.handlePanChange(change: change, isShowCancel: showCancel)
@@ -208,14 +208,17 @@ class MMPDFDetailViewController: MMBaseViewController {
 //        thumbnail.pdfView = pdfView
 //        thumbnail.layoutMode = .horizontal
 //        containerView.addSubview(thumbnail)
-        let line = PDFAnnotation(bounds: CGRect(x: 100, y: 100, width: 200, height: 200), forType: .line, withProperties: nil)
-        line.setValue([0, 0, 100, 100], forAnnotationKey: .linePoints)
-        line.setValue(["Closed", "Open"], forAnnotationKey: .lineEndingStyles)
-        line.setValue(UIColor.red, forAnnotationKey: .color)
-        if let page = document?.page(at: 1) {
+        
+        if let page = document?.page(at: 0) {
+            let pageBounds = page.bounds(for: .cropBox)
+            let changeBounds = CGRect(x: 0, y: 0, width: pageBounds.width - 100, height: pageBounds.height - 200)
+            let line = PDFAnnotation(bounds: changeBounds, forType: .line, withProperties: nil)
+            line.setValue([0, 0, 500, 500], forAnnotationKey: .linePoints)
+            line.setValue(["Closed", "Open"], forAnnotationKey: .lineEndingStyles)
+            line.setValue(UIColor.red, forAnnotationKey: .color)
             page.addAnnotation(line)
         }
-        pdfView.document = document
+//        pdfView.document = document
     }
     
     override func viewDidAppear(_ animated: Bool) {

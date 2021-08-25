@@ -32,6 +32,11 @@ class MMHomeTabBarController: UITabBarController {
         nav_2.tabBarItem.image = UIImage(named: "ic_other")
         addChild(nav_2)
         
+        let nav_3 = MMBaseNavigationController(rootViewController: MMTestViewController())
+        nav_3.tabBarItem.title = "测试"
+        nav_3.tabBarItem.image = UIImage(named: "ic_test")
+        addChild(nav_3)
+        
         selectedIndex = 0
     }
 }

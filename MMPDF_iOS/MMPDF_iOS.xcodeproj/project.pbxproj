@@ -43,6 +43,10 @@
 		B48AD53526BED03F005AB054 /* MMPopManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48AD53426BED03F005AB054 /* MMPopManager.swift */; };
 		B48AD53726BED787005AB054 /* UIKit+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48AD53626BED787005AB054 /* UIKit+Extension.swift */; };
 		B48AD53926BED7FE005AB054 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48AD53826BED7FE005AB054 /* UIViewController+Extension.swift */; };
+		B48E5FE226D6A19700F75089 /* MMTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48E5FE126D6A19700F75089 /* MMTestViewController.swift */; };
+		B48E5FE526D6A29E00F75089 /* MMWKWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48E5FE426D6A29E00F75089 /* MMWKWebViewController.swift */; };
+		B48E5FE726D6A3C700F75089 /* Swift 开发者必备 Tips (第四版).pdf in Resources */ = {isa = PBXBuildFile; fileRef = B48E5FE626D6A3C700F75089 /* Swift 开发者必备 Tips (第四版).pdf */; };
+		B48E5FE926D6A8D800F75089 /* MMCoreGraphicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48E5FE826D6A8D800F75089 /* MMCoreGraphicViewController.swift */; };
 		B4992ED426BAF78C004BFD4C /* MMThumbnailPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4992ED226BAF78C004BFD4C /* MMThumbnailPageCell.swift */; };
 		B4992ED526BAF78C004BFD4C /* MMThumbnailPageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4992ED326BAF78C004BFD4C /* MMThumbnailPageCell.xib */; };
 		B4992EDB26BAFD3D004BFD4C /* MMHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4992ED926BAFD3D004BFD4C /* MMHomeViewController.swift */; };
@@ -93,6 +97,10 @@
 		B48AD53426BED03F005AB054 /* MMPopManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMPopManager.swift; sourceTree = "<group>"; };
 		B48AD53626BED787005AB054 /* UIKit+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIKit+Extension.swift"; sourceTree = "<group>"; };
 		B48AD53826BED7FE005AB054 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		B48E5FE126D6A19700F75089 /* MMTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMTestViewController.swift; sourceTree = "<group>"; };
+		B48E5FE426D6A29E00F75089 /* MMWKWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMWKWebViewController.swift; sourceTree = "<group>"; };
+		B48E5FE626D6A3C700F75089 /* Swift 开发者必备 Tips (第四版).pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Swift 开发者必备 Tips (第四版).pdf"; sourceTree = "<group>"; };
+		B48E5FE826D6A8D800F75089 /* MMCoreGraphicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMCoreGraphicViewController.swift; sourceTree = "<group>"; };
 		B4992ED226BAF78C004BFD4C /* MMThumbnailPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMThumbnailPageCell.swift; sourceTree = "<group>"; };
 		B4992ED326BAF78C004BFD4C /* MMThumbnailPageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MMThumbnailPageCell.xib; sourceTree = "<group>"; };
 		B4992ED926BAFD3D004BFD4C /* MMHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MMHomeViewController.swift; sourceTree = "<group>"; };
@@ -146,6 +154,8 @@
 		B41B8BC826B6A41900AC3BC0 /* MMPDF_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				B48E5FE626D6A3C700F75089 /* Swift 开发者必备 Tips (第四版).pdf */,
+				B48E5FE026D6A17900F75089 /* Test */,
 				B4823DAC26C937DF008CD73E /* User */,
 				B48AD53026BEC83E005AB054 /* Util */,
 				B4992ED626BAFCC2004BFD4C /* Home */,
@@ -234,6 +244,24 @@
 				B4823DA326C908A8008CD73E /* UIButton+TransExtension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		B48E5FE026D6A17900F75089 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				B48E5FE326D6A24D00F75089 /* View */,
+				B48E5FE126D6A19700F75089 /* MMTestViewController.swift */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
+		B48E5FE326D6A24D00F75089 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B48E5FE426D6A29E00F75089 /* MMWKWebViewController.swift */,
+				B48E5FE826D6A8D800F75089 /* MMCoreGraphicViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		B4992ED126BAF75A004BFD4C /* View */ = {
@@ -335,6 +363,7 @@
 			files = (
 				B41B8BEE26B6DD5500AC3BC0 /* MMPDFDetailViewController.xib in Resources */,
 				B4823DAB26C91290008CD73E /* MMSingLabelCell.xib in Resources */,
+				B48E5FE726D6A3C700F75089 /* Swift 开发者必备 Tips (第四版).pdf in Resources */,
 				B4992ED526BAF78C004BFD4C /* MMThumbnailPageCell.xib in Resources */,
 				B41B8BD626B6A41A00AC3BC0 /* LaunchScreen.storyboard in Resources */,
 				B4992EDC26BAFD3D004BFD4C /* MMHomeViewController.xib in Resources */,
@@ -405,12 +434,14 @@
 				B41B8BE726B6A85100AC3BC0 /* MMDefine.swift in Sources */,
 				B4823DB326C95E19008CD73E /* String+Extension.swift in Sources */,
 				B48AD52E26BEC80D005AB054 /* MMOutlineItemCell.swift in Sources */,
+				B48E5FE926D6A8D800F75089 /* MMCoreGraphicViewController.swift in Sources */,
 				B4823DB026C95720008CD73E /* MMCellItem.swift in Sources */,
 				B48AD53726BED787005AB054 /* UIKit+Extension.swift in Sources */,
 				B41B8BE426B6A49E00AC3BC0 /* MMBaseViewController.swift in Sources */,
 				B49E384926C7C81800BD640B /* MMDetailPageCountView.swift in Sources */,
 				B4823DB526C9647F008CD73E /* MMColors.swift in Sources */,
 				B48AD52B26BEC6C9005AB054 /* MMPDFOutlineView.swift in Sources */,
+				B48E5FE226D6A19700F75089 /* MMTestViewController.swift in Sources */,
 				B47FFDCC26C192CB00C7D179 /* MMAsset.swift in Sources */,
 				B41B8BE326B6A49E00AC3BC0 /* MMCustomNaviBar.swift in Sources */,
 				B4823DAE26C93800008CD73E /* MMUserViewController.swift in Sources */,
@@ -419,6 +450,7 @@
 				B47FFDCF26C1936500C7D179 /* MMAssetCollectionCell.swift in Sources */,
 				B49F0C5626CD56AE00D8810B /* MMThroughTouchView.swift in Sources */,
 				B426EE2126D0F9D100327D23 /* MMCurPageThumbnailView.swift in Sources */,
+				B48E5FE526D6A29E00F75089 /* MMWKWebViewController.swift in Sources */,
 				B48AD53526BED03F005AB054 /* MMPopManager.swift in Sources */,
 				B4823DAA26C91290008CD73E /* MMSingLabelCell.swift in Sources */,
 				B41B8BCC26B6A41900AC3BC0 /* SceneDelegate.swift in Sources */,
