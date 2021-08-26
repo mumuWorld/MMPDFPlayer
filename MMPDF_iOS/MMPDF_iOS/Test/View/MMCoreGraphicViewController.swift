@@ -6,15 +6,19 @@
 //
 
 import UIKit
+import CoreGraphics
 
 class MMCoreGraphicViewController: MMBaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let path = Bundle.main.path(forResource: "Swift 开发者必备 Tips (第四版)", ofType: "pdf") else { return }
-//        let cfString = CFStringCreateWithCString(.none, &path.utf8, CFStringBuiltInEncodings.UTF8.rawValue)
-//        let cfUrl = CFURLCreateWithFileSystemPath(.none, cfString, <#T##pathStyle: CFURLPathStyle##CFURLPathStyle#>, <#T##isDirectory: Bool##Bool#>)
-//        CFURLCreateFileReferenceURL(kCFAllocatorDefault(), <#T##url: CFURL!##CFURL!#>, <#T##error: UnsafeMutablePointer<Unmanaged<CFError>?>!##UnsafeMutablePointer<Unmanaged<CFError>?>!#>)
+        guard let path = Bundle.main.path(forResource: "BookName", ofType: "pdf") else { return }
+        let cfString = CFStringCreateWithCString(.none, path, CFStringBuiltInEncodings.UTF8.rawValue)
+        guard let cfUrl = CFURLCreateWithFileSystemPath(.none, cfString, .cfurlWindowsPathStyle, false) else {
+            return
+        }
+        let document = CGPDFDocument(cfUrl)
+        let context = UIGraphicsGetCurrentContext()
     }
     
 

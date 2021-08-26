@@ -123,7 +123,7 @@ class MMPDFDetailViewController: MMBaseViewController {
     lazy var pageCountView: MMDetailPageCountView = MMDetailPageCountView()
     
     lazy var popManager: MMPopManager = MMPopManager()
-    
+    //MARK:- 需求2
     lazy var dataArray: [MMPDFOutlineItem] = {
         guard let t_document = document, let outline = t_document.outlineRoot else { return [] }
         var item = [MMPDFOutlineItem]()
@@ -180,6 +180,8 @@ class MMPDFDetailViewController: MMBaseViewController {
             return
         }
         document = PDFDocument(url: url)
+        //MARK:- 需求4
+//        document?.delegate = self
         thumbnailWidth = floor((kScreenWidth - vNormalSpacing * 2 - 9 * 2) / 10)
         thumbnailHeight = floor(thumbnailWidth * 1.2)
     }
@@ -204,26 +206,13 @@ class MMPDFDetailViewController: MMBaseViewController {
             //处理不跳转时候的图片
             gotoPage(pageNumber: 1)
         }
-//        let thumbnail = PDFThumbnailView(frame: CGRect(x: 0, y: 100, width: kScreenWidth, height: thumbnailHeight))
-//        thumbnail.pdfView = pdfView
-//        thumbnail.layoutMode = .horizontal
-//        containerView.addSubview(thumbnail)
         
-        if let page = document?.page(at: 0) {
-            let pageBounds = page.bounds(for: .cropBox)
-            let changeBounds = CGRect(x: 0, y: 0, width: pageBounds.width - 100, height: pageBounds.height - 200)
-            let line = PDFAnnotation(bounds: changeBounds, forType: .line, withProperties: nil)
-            line.setValue([0, 0, 500, 500], forAnnotationKey: .linePoints)
-            line.setValue(["Closed", "Open"], forAnnotationKey: .lineEndingStyles)
-            line.setValue(UIColor.red, forAnnotationKey: .color)
-            page.addAnnotation(line)
-        }
-//        pdfView.document = document
+        //MARK:- 需求6
+//        test6()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -280,6 +269,7 @@ extension MMPDFDetailViewController {
         curPageView.mm_x = CGFloat(curPage) * perPageDistance
     }
     
+    //MARK:- 展示大纲  需求2
     @objc func showMenu() {
         menuView.dataArray = dataArray
         popManager.show(view: menuView, popType: .left)
@@ -303,25 +293,6 @@ extension MMPDFDetailViewController {
         popPC?.sourceRect = settingBtn.superview?.convert(settingBtn.frame, to: window) ?? settingBtn.frame
         popPC?.delegate = moreVC
         navigationController?.present(moreVC, animated: true, completion: nil)
-    }
-    
-    func setNaviBar() {
-        naviBar.mm_addSubView(menuBtn)
-        menuBtn.snp.makeConstraints { make in
-            make.leading.equalTo(naviBar.backBtn.snp.trailing)
-            make.top.size.equalTo(naviBar.backBtn)
-        }
-        naviBar.mm_addSubView(settingBtn)
-        settingBtn.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().offset(-vNormalSpacing)
-            make.top.size.equalTo(menuBtn)
-        }
-        
-        if let title = document?.documentAttributes?[PDFDocumentAttribute.titleAttribute] as? String {
-            naviBar.titleLabel.text = title
-        } else {
-            naviBar.titleLabel.text = asset.name
-        }
     }
 }
 
@@ -377,6 +348,14 @@ extension MMPDFDetailViewController {
     }
 }
 
+extension MMPDFDetailViewController: PDFDocumentDelegate {
+    
+    func classForPage() -> AnyClass {
+        return MMWatermarkPage.self
+    }
+}
+
+//MARK:- PDFViewDelegate
 extension MMPDFDetailViewController : PDFViewDelegate {
 //    func pdfViewWillClick(onLink sender: PDFView, with url: URL) {
 //        mm_print("点击链接->\(url)")
@@ -399,7 +378,7 @@ extension MMPDFDetailViewController : PDFViewDelegate {
         mm_print("->")
     }
 }
-
+//MARK:- Base
 extension MMPDFDetailViewController {
     
     @objc func handleNotify(sender: Notification) {
@@ -423,13 +402,70 @@ extension MMPDFDetailViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(handlePageChange(sender:)), name: NSNotification.Name.PDFViewPageChanged, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handlePageClick(sender:)), name: NSNotification.Name.PDFViewAnnotationHit, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handlePageClick(sender:)), name: NSNotification.Name.PDFViewAnnotationWillHit, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(handleNotify(sender:)), name: UIApplication.willResignActiveNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(handleNotify(sender:)), name: UIApplication.didBecomeActiveNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(handleNotify(sender:)), name: UIApplication.willEnterForegroundNotification, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(handleNotify(sender:)), name: UIApplication.didEnterBackgroundNotification, object: nil)
+    }
+    
+    func setNaviBar() {
+        naviBar.mm_addSubView(menuBtn)
+        menuBtn.snp.makeConstraints { make in
+            make.leading.equalTo(naviBar.backBtn.snp.trailing)
+            make.top.size.equalTo(naviBar.backBtn)
+        }
+        naviBar.mm_addSubView(settingBtn)
+        settingBtn.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-vNormalSpacing)
+            make.top.size.equalTo(menuBtn)
+        }
+        
+        if let title = document?.documentAttributes?[PDFDocumentAttribute.titleAttribute] as? String {
+            naviBar.titleLabel.text = title
+        } else {
+            naviBar.titleLabel.text = asset.name
+        }
+    }
+    
+    func createMenuItem() -> Void {
+        let menuC = UIMenuController.shared
+        NotificationCenter.default.addObserver(self, selector: #selector(handleMenuShow(sender:)), name: UIMenuController.willShowMenuNotification, object: nil)
+    }
+    
+    @objc func handleMenuShow(sender: Notification) {
+        mm_print("willShowMenuNotification")
+    }
+    
+    //MARK:- 需求6
+    func test6() {
+        //画一条线
+        //获取要添加注解的page
+        if let page = document?.page(at: 0) {
+            let pageBounds = page.bounds(for: .cropBox)
+            let changeBounds = CGRect(x: 0, y: 0, width: pageBounds.width - 100, height: pageBounds.height - 200)
+            let line = PDFAnnotation(bounds: changeBounds, forType: .line, withProperties: nil)
+            //用setValue
+            line.setValue([0, 0, 500, 500], forAnnotationKey: .linePoints)
+            line.setValue(["Closed", "Open"], forAnnotationKey: .lineEndingStyles)
+            line.setValue(UIColor.red, forAnnotationKey: .color)
+            //用PDFAnnotationUtilities 拓展
+            line.startPoint = CGPoint(x: 0, y: 0)
+            line.endPoint = CGPoint(x: 500, y: 500)
+            line.startLineStyle = .closedArrow
+            line.endLineStyle = .openArrow
+            line.color = .red
+            //当前page添加注解
+            page.addAnnotation(line)
+        }
+    }
+    
+    //MARK:- 需求3: 2
+    func createSystemThum() {
+        //系统的略缩图
+        let thumbnail = PDFThumbnailView(frame: CGRect(x: 0, y: 100, width: kScreenWidth, height: thumbnailHeight))
+        thumbnail.pdfView = pdfView
+        thumbnail.layoutMode = .horizontal
+        containerView.addSubview(thumbnail)
     }
     
     func setupSubviews() -> Void {
+        //MARK:- 需求1
         pdfView.frame = CGRect(x: 0, y: kNavigationBarHeight, width: kScreenWidth, height: kScreenHeigh - kNavigationBarHeight - thumbnailHeight)
         containerView.addSubview(pdfView)
         pdfView.snp.makeConstraints { make in
@@ -437,9 +473,10 @@ extension MMPDFDetailViewController {
             make.bottom.equalToSuperview().offset(-kBottomSafeSpacing)
         }
         pdfView.document = document
+        //给pdfView加个手势
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleGesture(sender:)))
         pdfView.addGestureRecognizer(tap)
-        
+        //MARK:- 需求3
         //创建略缩图
         bottomToolView.addSubview(thumbnailView)
         containerView.addSubview(bottomToolView)
@@ -474,7 +511,7 @@ extension MMPDFDetailViewController {
         }
         
         registreNotify()
-        
+        createMenuItem()
         thumbnailView.isUserInteractionEnabled = pageCount > 10
         if document?.pageCount ?? 0 > 10 {
             bottomToolView.addSubview(thumnailTouchView)
@@ -498,7 +535,8 @@ extension MMPDFDetailViewController: UICollectionViewDelegate, UICollectionViewD
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MMThumbnailPageCell", for: indexPath) as! MMThumbnailPageCell
         if let page = document?.page(at: indexPath.row) {
             let size = CGSize(width: thumbnailWidth, height: thumbnailHeight)
-            let thum = page.thumbnail(of: size, for: .artBox)
+            // cropBox 默认 电子版、 mediaBox 纸质版
+            let thum = page.thumbnail(of: size, for: .cropBox)
             cell.thumbnailImgView.image = thum
         }
         return cell
