@@ -450,8 +450,27 @@ extension MMPDFDetailViewController {
             line.startLineStyle = .closedArrow
             line.endLineStyle = .openArrow
             line.color = .red
+            
+            let border_ano = PDFAnnotation(bounds: changeBounds, forType: .square, withProperties: nil)
+            let border = PDFBorder()
+            border.lineWidth = 2.0
+            border.style = .solid
+            border_ano.color = UIColor.yellow
+            border_ano.border = border
+            
+            let link_ano = PDFAnnotation(bounds: changeBounds, forType: .link, withProperties: nil)
+            let link = PDFActionURL(url: URL(string: "http://www.youdao.com/")!)
+            link_ano.action = link
+            
+            let goto_ano = PDFAnnotation(bounds: changeBounds, forType: .link, withProperties: nil)
+            let destination = PDFDestination(page: (document?.page(at: 1))!, at: CGPoint(x: 35, y: 275))
+            let actionGoTo = PDFActionGoTo(destination: destination)
+            goto_ano.action = actionGoTo
+            
             //当前page添加注解
             page.addAnnotation(line)
+            page.addAnnotation(border_ano)
+            page.addAnnotation(link_ano)
         }
     }
     
