@@ -123,7 +123,7 @@ class MMPDFDetailViewController: MMBaseViewController {
     lazy var pageCountView: MMDetailPageCountView = MMDetailPageCountView()
     
     lazy var popManager: MMPopManager = MMPopManager()
-    //MARK:- 需求2
+    // MARK: - 需求2
     lazy var dataArray: [MMPDFOutlineItem] = {
         guard let t_document = document, let outline = t_document.outlineRoot else { return [] }
         var item = [MMPDFOutlineItem]()
@@ -180,7 +180,7 @@ class MMPDFDetailViewController: MMBaseViewController {
             return
         }
         document = PDFDocument(url: url)
-        //MARK:- 需求4
+        // MARK: - 需求4
 //        document?.delegate = self
         thumbnailWidth = floor((kScreenWidth - vNormalSpacing * 2 - 9 * 2) / 10)
         thumbnailHeight = floor(thumbnailWidth * 1.2)
@@ -207,8 +207,10 @@ class MMPDFDetailViewController: MMBaseViewController {
             gotoPage(pageNumber: 1)
         }
         
-        //MARK:- 需求6
-//        test6()
+        // MARK: - 需求6
+        test6()
+        // MARK: - 需求3: 2 系统略缩图
+//        createSystemThum()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -269,22 +271,35 @@ extension MMPDFDetailViewController {
         curPageView.mm_x = CGFloat(curPage) * perPageDistance
     }
     
-    //MARK:- 展示大纲  需求2
+    // MARK: - 展示大纲  需求2
     @objc func showMenu() {
         menuView.dataArray = dataArray
         popManager.show(view: menuView, popType: .left)
     }
-    
+    // MARK: - 展示设置  需求7
     @objc func showSetting() {
         guard let window = application.delegate?.window else {
             return
         }
-        let dataArray = [MMCellItem(title: "指定跳转", handleAction: { [weak self] param in
+        let dataArray = [
+            MMCellItem(title: "指定跳转", handleAction: { [weak self] param in
             guard let self = self else { return }
             self.showGotoAlert()
-        })]
+        }),
+            MMCellItem(title: "文档搜索", handleAction: { [weak self] param in
+            guard let self = self else { return }
+            let searchVC = MMSearchTextViewController(doc: self.document)
+            searchVC.selectedCallBack = { selection in
+                guard let page = selection.pages.first else {
+                    return
+                }
+                self.pdfView.go(to: page)
+            }
+            self.navigationController?.present(searchVC, animated: true, completion: nil)
+        })
+        ]
         let moreVC = MMMorePopViewController(dataArray: dataArray)
-        moreVC.preferredContentSize = CGSize(width: 100, height: 54)
+        moreVC.preferredContentSize = CGSize(width: 100, height: 94)
         moreVC.modalPresentationStyle = .popover
 
         let popPC = moreVC.popoverPresentationController
@@ -355,7 +370,7 @@ extension MMPDFDetailViewController: PDFDocumentDelegate {
     }
 }
 
-//MARK:- PDFViewDelegate
+// MARK: - PDFViewDelegate
 extension MMPDFDetailViewController : PDFViewDelegate {
 //    func pdfViewWillClick(onLink sender: PDFView, with url: URL) {
 //        mm_print("点击链接->\(url)")
@@ -378,7 +393,7 @@ extension MMPDFDetailViewController : PDFViewDelegate {
         mm_print("->")
     }
 }
-//MARK:- Base
+// MARK: - Base
 extension MMPDFDetailViewController {
     
     @objc func handleNotify(sender: Notification) {
@@ -432,7 +447,7 @@ extension MMPDFDetailViewController {
         mm_print("willShowMenuNotification")
     }
     
-    //MARK:- 需求6
+    // MARK: - 需求6
     func test6() {
         //画一条线
         //获取要添加注解的page
@@ -471,10 +486,32 @@ extension MMPDFDetailViewController {
             page.addAnnotation(line)
             page.addAnnotation(border_ano)
             page.addAnnotation(link_ano)
+            page.addAnnotation(goto_ano)
+
+        }
+        if let page = document?.page(at: 1) {
+            let pageBounds = page.bounds(for: .cropBox)
+            let changeBounds = CGRect(x: 100, y: 200, width: pageBounds.width - 100, height: pageBounds.height - 200)
+            //构建一个文本属性
+            let action = PDFAnnotation(bounds: changeBounds, forType: .text, withProperties: nil)
+            action.contents = "测试注解"
+            action.fontColor = UIColor.red
+            page.addAnnotation(action)
+        }
+        
+        if let page = document?.page(at: 2) {
+            //跳转Annotation
+            let link = PDFAnnotation(bounds: CGRect(x: 40, y: 750, width: 200, height: 30), forType: .link, withProperties: nil)
+            link.action = PDFActionGoTo(destination: PDFDestination(page: (document?.page(at: 10))!, at: CGPoint(x: 40, y: 10)))
+            //用于高亮显示、便于点击
+            let highlight = PDFAnnotation(bounds: CGRect(x: 40, y: 750, width: 200, height: 30), forType: .highlight, withProperties: nil)
+            highlight.color = .red
+            //注意添加顺序、后添加的层级优先响应。
+            page.addAnnotation(highlight)
+            page.addAnnotation(link)
         }
     }
-    
-    //MARK:- 需求3: 2
+   
     func createSystemThum() {
         //系统的略缩图
         let thumbnail = PDFThumbnailView(frame: CGRect(x: 0, y: 100, width: kScreenWidth, height: thumbnailHeight))
@@ -484,7 +521,7 @@ extension MMPDFDetailViewController {
     }
     
     func setupSubviews() -> Void {
-        //MARK:- 需求1
+        // MARK: - 需求1
         pdfView.frame = CGRect(x: 0, y: kNavigationBarHeight, width: kScreenWidth, height: kScreenHeigh - kNavigationBarHeight - thumbnailHeight)
         containerView.addSubview(pdfView)
         pdfView.snp.makeConstraints { make in
@@ -493,9 +530,10 @@ extension MMPDFDetailViewController {
         }
         pdfView.document = document
         //给pdfView加个手势
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleGesture(sender:)))
-        pdfView.addGestureRecognizer(tap)
-        //MARK:- 需求3
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(handleGesture(sender:)))
+//        tap.delaysTouchesEnded = false
+//        pdfView.addGestureRecognizer(tap)
+        // MARK: - 需求3
         //创建略缩图
         bottomToolView.addSubview(thumbnailView)
         containerView.addSubview(bottomToolView)

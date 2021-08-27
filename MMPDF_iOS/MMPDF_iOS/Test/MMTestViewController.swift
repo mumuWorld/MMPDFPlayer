@@ -18,6 +18,13 @@ class MMTestViewController: MMBaseViewController {
         return item
     }()
     
+    lazy var documntC: UIDocumentInteractionController = {
+        let path = Bundle.main.path(forResource: "Swift 开发者必备 Tips (第四版)", ofType: "pdf")!
+        let document = UIDocumentInteractionController(url: URL(fileURLWithPath: path))
+        document.delegate = self
+        return document
+    }()
+    
     lazy var _dataArray: [MMCellItem] = {
         let item = [
             MMCellItem(title: "webview", handleAction: { [weak self] _ in
@@ -25,11 +32,20 @@ class MMTestViewController: MMBaseViewController {
             guard let path = Bundle.main.path(forResource: "Swift 开发者必备 Tips (第四版)", ofType: "pdf") else { return }
             let wkVC = MMWKWebViewController()
             wkVC.url = URL(fileURLWithPath: path)
-            self.navigationController?.pushViewController(wkVC, animated: true)}),
+            self.navigationController?.pushViewController(wkVC, animated: true)
+            
+        }),
             MMCellItem(title: "CoreGraphics", handleAction: { [weak self] _ in
             guard let self = self else { return }
-
-            self.navigationController?.pushViewController(MMCoreGraphicViewController(), animated: true)}),
+            
+            self.navigationController?.pushViewController(MMCoreGraphicViewController(), animated: true)
+            
+        }),
+            MMCellItem(title: "UIDocumentInteractionController", handleAction: { [weak self] _ in
+            guard let self = self else { return }
+            self.documntC.presentPreview(animated: true)
+        })
+            
         ]
         return item
     }()
@@ -41,6 +57,20 @@ class MMTestViewController: MMBaseViewController {
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+}
+
+extension MMTestViewController: UIDocumentInteractionControllerDelegate {
+    func documentInteractionControllerRectForPreview(_ controller: UIDocumentInteractionController) -> CGRect {
+        return self.view.frame
+    }
+    
+    func documentInteractionControllerViewForPreview(_ controller: UIDocumentInteractionController) -> UIView? {
+        return self.view
+    }
+    
+    func documentInteractionControllerViewControllerForPreview(_ controller: UIDocumentInteractionController) -> UIViewController {
+        self
     }
 }
 

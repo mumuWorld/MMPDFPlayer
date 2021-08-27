@@ -26,6 +26,7 @@ class MMMorePopViewController: UITableViewController {
         tableView.mm_register(nib: MMSingLabelCell.self)
         tableView.rowHeight = 44
         tableView.isScrollEnabled = false
+        tableView.contentInsetAdjustmentBehavior = .never
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -40,7 +41,7 @@ class MMMorePopViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
+        return 0.0
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
